@@ -1,0 +1,44 @@
+{
+  "COMMON": {
+    "WELCOME": "مرحباً",
+    "HELLO": "أهلاً وسهلاً",
+    "LOADING": "جاري التحميل...",
+    "SUBMIT": "إرسال",
+    "CANCEL": "إلغاء",
+    "SAVE": "حفظ",
+    "DELETE": "حذف",
+    "EDIT": "تعديل",
+    "SEARCH": "بحث",
+    "CLOSE": "إغلاق",
+    "YES": "نعم",
+    "NO": "لا",
+    "OK": "موافق",
+    "ERROR": "خطأ",
+    "SUCCESS": "نجح",
+    "WARNING": "تحذير",
+    "INFO": "معلومات"
+  },
+  "NAVIGATION": {
+    "HOME": "الرئيسية",
+    "ABOUT": "حول",
+    "CONTACT": "اتصل بنا",
+    "SETTINGS": "الإعدادات",
+    "PROFILE": "الملف الشخصي",
+    "LOGOUT": "تسجيل الخروج"
+  },
+  "AUTH": {
+    "LOGIN": "تسجيل الدخول",
+    "REGISTER": "تسجيل حساب جديد",
+    "EMAIL": "البريد الإلكتروني",
+    "PASSWORD": "كلمة المرور",
+    "CONFIRM_PASSWORD": "تأكيد كلمة المرور",
+    "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
+    "REMEMBER_ME": "تذكرني"
+  },
+  "VALIDATION": {
+    "REQUIRED": "هذا الحقل مطلوب",
+    "EMAIL_INVALID": "البريد الإلكتروني غير صحيح",
+    "PASSWORD_MIN": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "PASSWORD_MATCH": "كلمات المرور غير متطابقة"
+  }
+} 

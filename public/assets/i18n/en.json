@@ -1,0 +1,44 @@
+{
+  "COMMON": {
+    "WELCOME": "Welcome",
+    "HELLO": "Hello",
+    "LOADING": "Loading...",
+    "SUBMIT": "Submit",
+    "CANCEL": "Cancel",
+    "SAVE": "Save",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "SEARCH": "Search",
+    "CLOSE": "Close",
+    "YES": "Yes",
+    "NO": "No",
+    "OK": "OK",
+    "ERROR": "Error",
+    "SUCCESS": "Success",
+    "WARNING": "Warning",
+    "INFO": "Info"
+  },
+  "NAVIGATION": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "CONTACT": "Contact",
+    "SETTINGS": "Settings",
+    "PROFILE": "Profile",
+    "LOGOUT": "Logout"
+  },
+  "AUTH": {
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "FORGOT_PASSWORD": "Forgot Password?",
+    "REMEMBER_ME": "Remember Me"
+  },
+  "VALIDATION": {
+    "REQUIRED": "This field is required",
+    "EMAIL_INVALID": "Invalid email address",
+    "PASSWORD_MIN": "Password must be at least 8 characters",
+    "PASSWORD_MATCH": "Passwords do not match"
+  }
+} 

@@ -1,0 +1,91 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" [class]="getClassString(config?.class)"
+  [style]="getStyleString(config?.style)" [dir]="config.direction || 'ltr'" class="dynamic-form">
+
+  <!-- Render Fields -->
+  @for (field of fields; track $index + '_' + field.name) {
+
+  <!-- Control Fields -->
+  @if (isControlField(field)) {
+  <ng-container appDynamicField [field]="field" [showLabels]="config.showLabels !== false"
+    [showValidationMessages]="config.showValidationMessages !== false" [direction]="config.direction || 'ltr'"
+    [formControlName]="field.name"></ng-container>
+  }
+
+  <!-- Group Fields -->
+  @if (isGroupField(field)) {
+  @if (field.label) {
+  <h3 class="group-label">{{ field.label }}</h3>
+  }
+  <div [formGroupName]="field.name" [class]="getClassString(field.class)" [style]="getStyleString(field.style)"
+    class="form-group">
+    @if (field.children) {
+    @for (child of field.children; track $index) {
+    @if (isControlField(child)) {
+    <ng-container appDynamicField [field]="child" [showLabels]="config.showLabels !== false"
+      [showValidationMessages]="config.showValidationMessages !== false" [direction]="config.direction || 'ltr'"
+      [formControlName]="child.name"></ng-container>
+    }
+    }
+    }
+  </div>
+  }
+
+  <!-- Array Fields -->
+  @if (isArrayField(field)) {
+  <div [formArrayName]="field.name" [class]="getClassString(field.class)" [style]="getStyleString(field.style)"
+    class="form-array">
+
+    @if (field.label) {
+    <h3 class="array-label">{{ field.label }}</h3>
+    }
+
+    <div class="array-items">
+      @for (item of getFormArray(field.name).controls; track $index; let i = $index) {
+      <div [formGroupName]="i" class="array-item">
+
+        <div class="item-header">
+          <span class="item-index">{{ i + 1 }}</span>
+          <button type="button" (click)="removeArrayItem(field, i)" class="remove-item-btn">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+
+        <div class="item-content">
+          <lib-dynamic-form [fields]="field.itemTemplate.children" [config]="config" (formSubmit)="onFormSubmit($event)"
+            (formChange)="onFormChange($event)" (formReset)="onFormReset()" (buttonClick)="onButtonClick($event)">
+          </lib-dynamic-form>
+        </div>
+      </div>
+      }
+    </div>
+
+    <button type="button" (click)="addArrayItem(field)" class="add-item-btn">
+      <i class="fas fa-plus"></i>
+      إضافة {{ field.label || 'عنصر' }}
+    </button>
+  </div>
+  }
+
+  <!-- HTML Fields -->
+  @if (isHtmlField(field)) {
+  <lib-html-field [field]="field"></lib-html-field>
+  }
+
+  <!-- Button Fields -->
+  @if (isButtonField(field)) {
+  <lib-button-field [field]="field" (buttonClick)="onButtonClick($event)">
+  </lib-button-field>
+  }
+
+  }
+
+  <!-- Default Submit Button (if no submit button in fields) -->
+  @if (!hasSubmitButton()) {
+  <div class="default-submit">
+    <button type="submit" [disabled]="!form.valid" class="form-button">
+      إرسال
+    </button>
+  </div>
+  }
+
+</form>

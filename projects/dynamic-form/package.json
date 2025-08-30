@@ -1,0 +1,31 @@
+{
+  "name": "@your-org/dynamic-form",
+  "version": "1.0.0",
+  "description": "Angular 19 Dynamic Form Library with RTL/LTR support",
+  "keywords": [
+    "angular",
+    "dynamic-form",
+    "reactive-forms",
+    "rtl",
+    "ltr",
+    "typescript",
+    "tailwind"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/dynamic-form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/dynamic-form/issues"
+  },
+  "homepage": "https://github.com/your-org/dynamic-form#readme",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0"
+  },
+  "sideEffects": false
+}
