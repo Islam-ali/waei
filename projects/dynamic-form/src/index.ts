@@ -24,6 +24,10 @@ export * from './lib/components/calendar-field.component';
 export * from './lib/components/file-field.component';
 export * from './lib/components/html-field.component';
 export * from './lib/components/button-field.component';
+export * from './lib/components/phone-field.component';
+
+// Directives
+export * from './lib/directives/max-length.directive';
 
 // Base component
 export * from './lib/components/base-field.component'; 

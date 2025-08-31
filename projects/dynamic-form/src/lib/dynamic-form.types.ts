@@ -2,6 +2,8 @@
 // Base Types
 // ====================
 
+import { TemplateRef } from "@angular/core";
+
 export type FieldType =
   | 'control'   // input, select, checkbox...
   | 'group'     // nested FormGroup
@@ -20,12 +22,14 @@ export type ControlType =
   | 'password'
   | 'email'
   | 'number'
+  | 'phone'
   | 'date'
   | 'calendar'
   | 'daterangepicker'
   | 'file'
   | 'html'
-  | 'button';
+  | 'button'
+  | 'otp';
 
 export interface BaseField {
   name: string;
@@ -67,6 +71,14 @@ export interface ControlField extends BaseField {
   maxDate?: Date;
   dateType?: 'hijri' | 'gregorian';
   language?: 'ar' | 'en';
+  isViewOnly?: boolean;
+  // OTP specific properties
+  otpLength?: number;
+  autoSubmit?: boolean;
+  countdown?: number;
+  canResend?: boolean;
+  onResend?: () => void;
+  onComplete?: (otp: string) => void;
 }
 
 // ====================
@@ -93,8 +105,9 @@ export interface ArrayField extends BaseField {
 
 export interface HtmlField extends BaseField {
   type: 'html';
-  content: string; // HTML string
+  content?: string; // HTML string
   safe?: boolean;  // هل أستخدم DomSanitizer ولا innerHTML مباشرة
+  template?: TemplateRef<any>;
 }
 
 // ====================
@@ -134,9 +147,12 @@ export interface ValidationRule {
     | 'pattern'
     | 'email'
     | 'min'
-    | 'max';
+    | 'max'
+    | 'mismatch';
+
   value?: any;
   message: string;
+  formControlMatch?: string;
 }
 
 // ====================

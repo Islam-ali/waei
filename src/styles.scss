@@ -5,40 +5,40 @@
 
 @layer components {
   .heading-1 {
-    @apply text-primary-500;
+    @apply text-gray-500;
   }
   .field-input {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-textarea {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-slider {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-select {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-checkbox {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-calendar {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-radio {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-file {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-html {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-button {
-    @apply border border-primary-300 rounded-md p-2 w-full focus:outline-none focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
+    @apply border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:border-gray-500 disabled:bg-gray-100 disabled:cursor-not-allowed ;
   }
   .field-error {
-    @apply text-red-500 text-sm mt-1 ;
+    @apply text-red-500 text-xs mt-1 ;
   }
   .field-label {
     @apply text-sm font-medium text-gray-700 ;
@@ -102,6 +102,9 @@
   }
   .is-valid {
     @apply border-green-500 focus:border-green-500 ;
+  }
+  .is-active-link {
+    @apply bg-primary-500 text-white ;
   }
 }
 input:-webkit-autofill,

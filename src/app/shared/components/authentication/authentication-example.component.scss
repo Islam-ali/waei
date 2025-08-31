@@ -1,0 +1,42 @@
+// Custom styles for authentication example component
+:host {
+  display: block;
+}
+
+// RTL support
+[dir="rtl"] {
+  .text-left {
+    text-align: right;
+  }
+  
+  .text-right {
+    text-align: left;
+  }
+}
+
+// Card hover effects
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+// Button animations
+.btn-animate {
+  @apply transition-all duration-200;
+}
+
+.btn-animate:hover {
+  @apply transform scale-105;
+}
+
+// Feature icons
+.feature-icon {
+  @apply transition-transform duration-300;
+}
+
+.feature-icon:hover {
+  @apply transform scale-110;
+} 

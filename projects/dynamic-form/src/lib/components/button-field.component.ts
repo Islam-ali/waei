@@ -6,21 +6,19 @@ import { ButtonField } from '../dynamic-form.types';
   standalone: true,
   imports: [],
   template: `
-    <div [class]="getClassString(field.class)" [style]="getStyleString(field.style)" class="button-field">
       <button 
         type="button"
         (click)="onButtonClick($event)"
-        [class]="getButtonColorClass(field.color)"
+        [class]="field.class"
         [class.full-width]="field.fullWidth"
         [disabled]="disabled"
-        class="form-button"
+        class="disabled:opacity-50 disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
         @if (field.icon) {
           <i [class]="field.icon" class="button-icon"></i>
         }
         {{ field.label }}
       </button>
-    </div>
   `
  
 })
@@ -50,15 +48,15 @@ export class ButtonFieldComponent {
 
   getButtonColorClass(color: string | undefined): string {
     switch (color) {
-      case 'primary': return 'bg-primary';
-      case 'secondary': return 'bg-secondary';
-      case 'success': return 'bg-success';
-      case 'danger': return 'bg-danger';
-      case 'warning': return 'bg-warning';
-      case 'info': return 'bg-info';
-      case 'light': return 'bg-light';
-      case 'dark': return 'bg-dark';
-      default: return 'bg-primary';
+      case 'primary': return 'bg-primary-600';
+      case 'secondary': return 'bg-secondary-600';
+      case 'success': return 'bg-success-600';
+      case 'danger': return 'bg-danger-600';
+      case 'warning': return 'bg-warning-600';
+      case 'info': return 'bg-info-600';
+      case 'light': return 'bg-light-600';
+      case 'dark': return 'bg-dark-600';
+      default: return 'bg-primary-600';
     }
   }
 } 

@@ -8,7 +8,7 @@ import { NgClass } from "@angular/common";
   standalone: true,
   imports: [NgClass],
   template: `
-    <div [class]="getClassString(field.class)" [style]="getStyleString(field.style)" class="form-field">
+    <div  class="form-field">
       
       @if (showLabels && field.label) {
         <label [for]="field.name" class="field-label">
@@ -43,6 +43,7 @@ import { NgClass } from "@angular/common";
           [class.is-invalid]="isFieldInvalid()"
           [class.is-valid]="isFieldValid()"
         [ngClass]="field.class"
+        autocomplete="off"
         />
         
         @if (field.suffixIcon) {

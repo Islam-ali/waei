@@ -41,6 +41,7 @@ import { BaseFieldComponent } from './base-field.component';
           [class.has-suffix]="field.suffixIcon"
           [class.is-invalid]="isFieldInvalid()"
           [class.is-valid]="isFieldValid()"
+          autocomplete="off"
         />
         
         @if (field.suffixIcon) {

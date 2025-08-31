@@ -25,5 +25,10 @@ export const routes: Routes = [
   {
     path: 'file-upload-example',
     component: FileUploadExampleComponent
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./shared/components/authentication/routes-example').then(m => m.AUTHENTICATION_ROUTES)
   }
+
 ];

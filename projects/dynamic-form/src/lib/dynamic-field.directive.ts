@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ViewContainerRef, forwardRef, OnDestroy, Optional } from '@angular/core';
+import { Directive, Input, OnInit, ViewContainerRef, forwardRef, OnDestroy, Optional, Renderer2 } from '@angular/core';
 import { ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ControlField, ControlType } from './dynamic-form.types';
 import { InputFieldComponent } from './components/input-field.component';
@@ -14,6 +14,8 @@ import { CalendarFieldComponent } from '../public-api';
 import { DateRangePickerComponent } from './components/date-range-picker.component';
 import { NumberFieldComponent } from './components/number-field.component';
 import { PasswordFieldComponent } from './components/password-field.component';
+import { PhoneFieldComponent } from './components/phone-field.component';
+import { OtpFieldComponent } from './components/otp-field.component';
 
 @Directive({
   selector: '[appDynamicField]',
@@ -31,13 +33,16 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, ControlValueAcc
   @Input() showLabels = true;
   @Input() showValidationMessages = true;
   @Input() direction: 'ltr' | 'rtl' = 'ltr';
+  @Input() class: string = '';
+  @Input() style: string = '';
   private componentRef: any;
   private onChange = (value: any) => {};
   private onTouched = () => {};
 
   constructor(
     private viewContainerRef: ViewContainerRef,
-    @Optional() private controlContainer: ControlContainer
+    @Optional() private controlContainer: ControlContainer,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -67,6 +72,15 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, ControlValueAcc
       instance.direction = this.direction;
       instance.control = this.controlContainer?.control?.get(this.field.name) as FormControl;
 
+      const hostEl = this.componentRef.location.nativeElement;
+      if (this.class) {
+        this.class.split(' ').forEach(c =>
+          this.renderer.addClass(hostEl, c)
+        );
+      }
+      if (this.style) {
+        this.renderer.setAttribute(hostEl, 'style', this.style);
+      }
       // Connect ControlValueAccessor
       if (instance.registerOnChange && instance.registerOnTouched) {
         instance.registerOnChange(this.onChange);
@@ -119,8 +133,11 @@ export class DynamicFieldDirective implements OnInit, OnDestroy, ControlValueAcc
       file: FileFieldComponent,
       html: HtmlFieldComponent,
       button: ButtonFieldComponent,
+      phone: PhoneFieldComponent,
+      otp: OtpFieldComponent,
     };
 
     return componentMap[type] || null;
   }
 }
+

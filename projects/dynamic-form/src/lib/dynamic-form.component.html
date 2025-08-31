@@ -1,3 +1,4 @@
+@if(form && fields && fields.length > 0) {
 <form [formGroup]="form" (ngSubmit)="onSubmit()" [class]="getClassString(config?.class)"
   [style]="getStyleString(config?.style)" [dir]="config.direction || 'ltr'" class="dynamic-form">
 
@@ -21,7 +22,7 @@
     @if (field.children) {
     @for (child of field.children; track $index) {
     @if (isControlField(child)) {
-    <ng-container appDynamicField [field]="child" [showLabels]="config.showLabels !== false"
+    <ng-container appDynamicField [field]="child" [class]="getClassString(child.class)" [style]="getStyleString(child.style)" [showLabels]="config.showLabels !== false"
       [showValidationMessages]="config.showValidationMessages !== false" [direction]="config.direction || 'ltr'"
       [formControlName]="child.name"></ng-container>
     }
@@ -73,19 +74,19 @@
 
   <!-- Button Fields -->
   @if (isButtonField(field)) {
-  <lib-button-field [field]="field" (buttonClick)="onButtonClick($event)">
+  <lib-button-field [field]="field" [disabled]="field.action === 'submit' ? !form.valid : false" (buttonClick)="onButtonClick($event)">
   </lib-button-field>
   }
 
   }
 
   <!-- Default Submit Button (if no submit button in fields) -->
-  @if (!hasSubmitButton()) {
+  @if (fields && fields.length > 0 && !hasSubmitButton()) {
   <div class="default-submit">
     <button type="submit" [disabled]="!form.valid" class="form-button">
       إرسال
     </button>
   </div>
   }
-
 </form>
+}

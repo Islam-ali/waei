@@ -22,7 +22,7 @@ import { BaseFieldComponent } from './base-field.component';
         <p class="field-description">{{ field.description }}</p>
       }
 
-      <div class="input-wrapper">
+      <div class="input-wrapper relative">
         @if (field.prefixIcon) {
           <i [class]="field.prefixIcon" class="prefix-icon"></i>
         }
@@ -36,9 +36,9 @@ import { BaseFieldComponent } from './base-field.component';
           [readonly]="field.readonly"
           (input)="onInputChange($event)"
           (blur)="onBlur()"
-          class="field-input"
+          class="field-input pe-8"
           [class.has-prefix]="field.prefixIcon"
-          [class.has-suffix]="field.suffixIcon || true"
+          [class.px-4]="true"
           [class.is-invalid]="isFieldInvalid()"
           [class.is-valid]="isFieldValid()"
         />
@@ -46,31 +46,38 @@ import { BaseFieldComponent } from './base-field.component';
         <button
           type="button"
           (click)="togglePasswordVisibility()"
-          class="suffix-icon password-toggle"
+          class="text-gray-400 absolute top-1/2 p-2 end-0 translate-y-[-50%]"
         >
-          <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+          <!-- showPassword ? 'fas fa-eye-slash' : 'fas fa-eye' -->
+           <!-- svg eye slash -->
+           @if (showPassword) {
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-slash"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><path d="M2 2l20 20"></path></svg>
+           <!-- svg eye -->
+           }@else {
+           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+           }
         </button>
-        
-        @if (field.suffixIcon) {
-          <i [class]="field.suffixIcon" class="suffix-icon additional-icon"></i>
-        }
       </div>
-
+    </div>
+    <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
       @if (showValidationMessages && hasError('required')) {
-        <div class="field-error">{{ getErrorMessage('required') }}</div>
+        <li class="field-error">{{ getErrorMessage('required') }}</li>
       }
       @if (showValidationMessages && hasError('minlength')) {
-        <div class="field-error">{{ getErrorMessage('minLength') }}</div>
+        <li class="field-error">{{ getErrorMessage('minLength') }}</li>
       }
       @if (showValidationMessages && hasError('maxlength')) {
-        <div class="field-error">{{ getErrorMessage('maxLength') }}</div>
+        <li class="field-error">{{ getErrorMessage('maxLength') }}</li>
       }
       @if (showValidationMessages && hasError('pattern')) {
-        <div class="field-error">{{ getErrorMessage('pattern') }}</div>
+        <li class="field-error">{{ getErrorMessage('pattern') }}</li>
       }
-    </div>
+      @if (showValidationMessages && hasError('mismatch')) {
+        <li class="field-error">{{ getErrorMessage('mismatch') }}</li>
+      }
+  </ul>
   `
- ,
+  ,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

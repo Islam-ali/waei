@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, ReactiveFormsModule, FormArray, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, FormArray, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { HtmlFieldComponent } from './components/html-field.component';
 import { ButtonFieldComponent } from './components/button-field.component';
@@ -48,7 +48,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   @Output() formSubmit = new EventEmitter<FormSubmitEvent>();
   @Output() formChange = new EventEmitter<FormChangeEvent>();
   @Output() formReset = new EventEmitter<void>();
-  @Output() buttonClick = new EventEmitter<{ field: ButtonField; event: any }>();
+  @Output() buttonClick = new EventEmitter<{ field: ButtonField; event: any , form: FormGroup }>();
   
   // API-related outputs for file upload
   @Output() onUploadStart = new EventEmitter<any>();
@@ -82,6 +82,11 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   }
 
   private initializeForm(): void {
+    if (!this.fields || this.fields.length === 0) {
+      this.form = this.fb.group({});
+      return;
+    }
+    
     this.form = this.fb.group({});
     this.fields.forEach(field => {
       this.addFieldToForm(this.form, field);
@@ -94,7 +99,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
       case 'control':
         // Create FormControl with disabled state and validators
         const isDisabled = (field as ControlField).disabled || this.disabled;
-        const validators = this.createValidators((field as ControlField).validations);
+        const validators = this.createValidators((field as ControlField).validations, formGroup.get(field.name) as FormControl);
         formGroup.addControl(field.name, this.fb.control({
           value: (field as ControlField).value || '',
           disabled: isDisabled
@@ -157,7 +162,14 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   onFormSubmit(event: FormSubmitEvent): void { this.formSubmit.emit(event); }
   onFormChange(event: FormChangeEvent): void { this.formChange.emit(event); }
   onFormReset(): void { this.formReset.emit(); }
-  onButtonClick(event: { field: ButtonField; event: any }): void { this.buttonClick.emit(event); }
+  onButtonClick(event: { field: ButtonField; event: any }): void
+   { 
+    if (event.field.action === 'custom') {
+      event.field.onClick?.();
+    } else {
+      this.buttonClick.emit({...event , form: this.form});
+    }
+   }
 
   addArrayItem(field: ArrayField, initialItemValue?: any): void {
     const formArray = this.form.get(field.name) as FormArray;
@@ -198,6 +210,9 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   }
 
   hasSubmitButton(): boolean {
+    if (!this.fields || this.fields.length === 0 || !this.form) {
+      return false;
+    }
     return this.fields.some(field =>
       field.type === 'button' && (field as ButtonField).action === 'submit'
     );
@@ -222,7 +237,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
       .join('; ');
   }
 
-  private createValidators(validations: ValidationRule[] = []): any[] {
+  private createValidators(validations: ValidationRule[] = [] , formControl: FormControl | null = null): any[] {
     const validators: any[] = [];
 
     validations.forEach(validation => {
@@ -247,6 +262,9 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
           break;
         case 'max':
           validators.push(Validators.max(validation.value));
+          break;
+        case 'mismatch':
+          validators.push(this.matchOtherValidator(validation.formControlMatch as string));
           break;
       }
     });
@@ -286,4 +304,16 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
       }
     };
   }
+
+  private matchOtherValidator(matchTo: string) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.parent) return null;
+  
+      const matchingControl = control.parent.get(matchTo);
+      if (!matchingControl) return null;
+  
+      return control.value === matchingControl.value ? null : { mismatch: true };
+    };
+  }
+  
 }
