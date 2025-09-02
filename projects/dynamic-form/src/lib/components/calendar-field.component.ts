@@ -398,10 +398,15 @@ export class CalendarFieldComponent extends BaseFieldComponent implements OnInit
     if (this.field.dateType === 'gregorian') return false;
 
     // Default to Arabic for RTL or based on document
-    return document.documentElement.dir === 'rtl' ||
-      document.documentElement.lang === 'ar' ||
-      navigator.language.startsWith('ar') ||
-      this.field.language === 'ar';
+    if (typeof document !== 'undefined' && typeof navigator !== 'undefined') {
+      return document.documentElement.dir === 'rtl' ||
+        document.documentElement.lang === 'ar' ||
+        navigator.language.startsWith('ar') ||
+        this.field.language === 'ar';
+    }
+    
+    // Fallback to field configuration or default to Arabic
+    return this.field.language === 'ar' || true;
   }
 
   get weekDays(): string[] {

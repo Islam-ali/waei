@@ -88,18 +88,17 @@
                     <p>Enter your information to create a new account</p>
                 </div>
                 <div class="w-full flex flex-1 flex-col min-h-0">
+                    <app-language-switcher></app-language-switcher>
                     <div class="mb-6">
                         <p class="text-lg font-medium mb-3">I want to register as a</p>
                         <div class="grid grid-cols-2 gap-4">
                             <button
                                 class="field-input text-lg font-medium transition-all duration-200 hover:text-primary-500 hover:bg-indigo-50 hover:border-indigo-300"
-                                routerLink="individual"
-                                [routerLinkActive]="['is-active-link']"
+                                routerLink="individual" [routerLinkActive]="['is-active-link']"
                                 [routerLinkActiveOptions]="{ exact: true }">
                                 <p>Individual</p>
                             </button>
-                            <button routerLink="company"
-                                [routerLinkActive]="['is-active-link']"
+                            <button routerLink="company" [routerLinkActive]="['is-active-link']"
                                 [routerLinkActiveOptions]="{ exact: true }"
                                 class="field-input text-lg font-medium transition-all duration-200 hover:text-primary-500 hover:bg-indigo-50 hover:border-indigo-300">
                                 <p>Company</p>

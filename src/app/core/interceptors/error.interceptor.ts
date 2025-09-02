@@ -2,6 +2,8 @@ import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpEvent, HttpErrorResp
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { StorageService } from '../services';
+import { inject } from '@angular/core';
 
 export interface ErrorInfo {
   message: string;
@@ -63,11 +65,11 @@ function getErrorMessage(error: HttpErrorResponse): string {
   }
 }
 
-function handleSpecificErrors(error: HttpErrorResponse): void {
+function handleSpecificErrors(error: HttpErrorResponse, storageService: StorageService): void {
   switch (error.status) {
     case 401:
       // Handle unauthorized - redirect to login
-      handleUnauthorized();
+      handleUnauthorized(storageService);
       break;
     case 403:
       // Handle forbidden - show access denied message
@@ -80,10 +82,10 @@ function handleSpecificErrors(error: HttpErrorResponse): void {
   }
 }
 
-function handleUnauthorized(): void {
+function handleUnauthorized(storageService: StorageService): void {
   // Clear auth token
-  localStorage.removeItem(environment.auth.tokenKey);
-  sessionStorage.removeItem(environment.auth.tokenKey);
+  storageService.removeItem(environment.auth.tokenKey);
+  storageService.removeItem(environment.auth.tokenKey, 'session');
   
   // Redirect to login page
   // Note: In a real app, you might want to use Router service
@@ -101,6 +103,9 @@ export const errorInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
+      // Get storage service within the injection context
+      const storageService = inject(StorageService);
+      
       // Check if this request should skip error handling
       if (shouldSkipError(request.url)) {
         return throwError(() => error);
@@ -118,7 +123,7 @@ export const errorInterceptor: HttpInterceptorFn = (
       errorSubject.next(errorInfo);
 
       // Handle specific error statuses
-      handleSpecificErrors(error);
+      handleSpecificErrors(error, storageService);
 
       // Return the error to be handled by the calling code
       return throwError(() => error);

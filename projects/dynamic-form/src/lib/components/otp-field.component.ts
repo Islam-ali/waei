@@ -9,6 +9,7 @@ import {
   ViewChildren,
   QueryList,
   inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFieldComponent } from './base-field.component';
@@ -39,7 +40,7 @@ import {
         <div class="countdown-timer">
           <p class="text-sm text-gray-600">
             Time remaining:
-            <span class="font-medium text-primary-600">{{ (countdown$ | async) }}</span>
+            <span class="font-medium text-primary-600">{{ formatTime((countdown$ | async) || 0) }}</span>
           </p>
         </div>
       }
@@ -55,7 +56,7 @@ import {
               maxlength="1"
               inputmode="numeric"
               pattern="[0-9]"
-              [disabled]="disabled || (field.countdown && (countdown$ | async) || 0 > 0)"
+              [disabled]="disabled || countdown$.value == 0"
               [placeholder]="'0'"
               [value]="digit"
               (input)="onOtpInput($event, $index)"
@@ -64,7 +65,7 @@ import {
               class="otp-input"
               [class.is-invalid]="isFieldInvalid()"
               [class.is-valid]="isFieldValid()"
-              [class.is-disabled]="disabled || (field.countdown && (countdown$ | async) || 0 > 0)"
+              [class.is-disabled]="disabled "
             />
           }
         </div>
@@ -180,10 +181,12 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
   otpArray: string[] = [];
-  countdown$: Observable<number> = of(0);
+  countdown$ = new BehaviorSubject<number>(0);
   canResend$ = new BehaviorSubject<boolean>(false);
   private destroy$ = new Subject<void>();
   private reset$ = new Subject<number>();
+  private cdr = inject(ChangeDetectorRef);
+  private countdownTimer?: any;
 
   constructor() {
     super();
@@ -205,33 +208,71 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   }
 
   ngOnDestroy(): void {
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = undefined;
+    }
     this.destroy$.next();
     this.destroy$.complete();
     this.reset$.complete();
   }
 
   private bindCountdownStream(): void {
-    this.countdown$ = this.reset$.pipe(
-      switchMap((startSeconds) =>
-        interval(1000).pipe(
-          startWith(0),
-          map((i) => startSeconds - i),
-          takeWhile((v) => v >= 0, true),
-          tap((value) => {
-            if (value === 0) {
-              this.canResend$.next(true);
-            }
-          }),
-          shareReplay(1) // Ensures value is shared and replayed to new subscribers
-        )
-      ),
+    console.log('Binding countdown stream');
+    
+    // Subscribe to reset$ directly
+    this.reset$.pipe(
       takeUntil(this.destroy$)
-    );
+    ).subscribe((startSeconds) => {
+      console.log('Reset$ received:', startSeconds);
+      this.startCountdown(startSeconds);
+    });
+  }
+
+  private startCountdown(startSeconds: number): void {
+    console.log('Starting countdown with:', startSeconds);
+    
+    // Clear any existing timer
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = undefined;
+    }
+    
+    let currentValue = startSeconds;
+    this.countdown$.next(currentValue);
+    
+    this.countdownTimer = setInterval(() => {
+      currentValue--;
+      
+      if (currentValue >= 0) {
+        this.countdown$.next(currentValue);
+        this.cdr.detectChanges();
+        
+        if (currentValue === 0) {
+          this.canResend$.next(true);
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = undefined;
+        }
+      } else {
+        clearInterval(this.countdownTimer);
+        this.countdownTimer = undefined;
+      }
+    }, 1000);
   }
 
   private resetCountdown(seconds: number): void {
+    console.log('Resetting countdown to:', seconds);
+    
+    // Clear existing timer first
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = undefined;
+    }
+    
     this.canResend$.next(false);
+    console.log('About to emit to reset$');
     this.reset$.next(seconds);
+    console.log('Emitted to reset$');
   }
 
   onOtpInput(event: any, fieldIndex: number): void {
@@ -342,5 +383,11 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
       this.otpArray = new Array(this.field.otpLength || 4).fill('');
     }
     this.value = value;
+  }
+
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   }
 }

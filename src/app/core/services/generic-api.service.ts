@@ -47,22 +47,12 @@ export class GenericApiService<T extends BaseEntity> {
 
   // GET - Get paginated items
   getPaginated(endpoint: string, paginationParams: PaginationParams): Observable<ApiResponse<PaginatedResponse<T>>> {
-    let httpParams = new HttpParams()
-      .set('page', paginationParams.page.toString())
-      .set('limit', paginationParams.limit.toString());
-
-    if (paginationParams.sortBy) {
-      httpParams = httpParams.set('sortBy', paginationParams.sortBy);
-    }
-    if (paginationParams.sortOrder) {
-      httpParams = httpParams.set('sortOrder', paginationParams.sortOrder);
-    }
-    if (paginationParams.search) {
-      httpParams = httpParams.set('search', paginationParams.search);
-    }
-    if (paginationParams.filters) {
-      Object.keys(paginationParams.filters).forEach(key => {
-        httpParams = httpParams.set(`filter[${key}]`, paginationParams.filters?.[key]?.toString() || '');
+    let httpParams = new HttpParams();
+    if (paginationParams) {
+      Object.keys(paginationParams).forEach(key => {
+        if (paginationParams[key as keyof PaginationParams] !== null && paginationParams[key as keyof PaginationParams] !== undefined) {
+          httpParams = httpParams.set(key, paginationParams[key as keyof PaginationParams]?.toString() || '');
+        }
       });
     }
 

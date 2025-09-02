@@ -816,9 +816,28 @@ export class FileFieldComponent extends BaseFieldComponent implements OnChanges,
       this.updateFormControl();
       
       // Trigger file input click
-      const fileInput = document.getElementById(`dropzone-file-${this.field.name}`) as HTMLInputElement;
-      if (fileInput) {
-        fileInput.click();
+      if (typeof document !== 'undefined') {
+        const fileInput = document.getElementById(`dropzone-file-${this.field.name}`) as HTMLInputElement;
+        if (fileInput) {
+          fileInput.click();
+        }
+      }
+    }
+  }
+
+  openFileDialog(): void {
+    if (this.field.disabled) return;
+    
+    if (this.field.multiple) {
+      this.files = [];
+      this.updateFormControl();
+      
+      // Trigger file input click
+      if (typeof document !== 'undefined') {
+        const fileInput = document.getElementById(`dropzone-file-${this.field.name}`) as HTMLInputElement;
+        if (fileInput) {
+          fileInput.click();
+        }
       }
     }
   }
@@ -835,6 +854,11 @@ export class FileFieldComponent extends BaseFieldComponent implements OnChanges,
   downloadFile(fileId: string): void {
     if (!fileId) {
       console.error('File ID is required for downloadFile');
+      return;
+    }
+
+    if (typeof document === 'undefined') {
+      console.warn('Document not available for file download');
       return;
     }
 

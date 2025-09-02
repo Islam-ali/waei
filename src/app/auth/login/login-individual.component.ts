@@ -2,12 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormField, DynamicFormComponent, DynamicFormConfig } from '../../../../projects/dynamic-form/src';
 import { Router } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-login-individual',
     templateUrl: './login-individual.component.html',
     styleUrls: ['./login-individual.component.scss'],
-    imports: [DynamicFormComponent]
+    imports: [DynamicFormComponent, TranslateModule, CommonModule]
 })
 export class LoginIndividualComponent implements OnInit {
     loginMethod: 'phone' | 'email' = 'email';
@@ -148,11 +150,9 @@ export class LoginIndividualComponent implements OnInit {
         fields: []
     };
 
-    constructor(private fb: FormBuilder) { }
+    constructor(private fb: FormBuilder, private translate: TranslateService) { }
 
     ngOnInit(): void {
-
-
         // Update validation based on login method
     }
 

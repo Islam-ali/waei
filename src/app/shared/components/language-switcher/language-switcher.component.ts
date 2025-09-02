@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, Language } from '../../../core/services/translation.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule],
   template: `
     <div class="language-switcher">
       <button 
@@ -15,10 +15,10 @@ import { TranslationService, Language } from '../../../core/services/translation
         [class.active]="currentLanguage === lang"
         class="lang-btn"
         [attr.dir]="lang === 'ar' ? 'rtl' : 'ltr'">
-        {{ lang === 'ar' ? 'العربية' : 'English' }}
+        {{ lang === 'ar' ? 'ar' : 'en' }}
       </button>
     </div>
-  `
+  `,
   styles: [`
     .language-switcher {
       display: flex;
@@ -45,17 +45,25 @@ import { TranslationService, Language } from '../../../core/services/translation
     }
   `]
 })
-export class LanguageSwitcherComponent {
+export class LanguageSwitcherComponent implements OnDestroy {
   currentLanguage: Language = 'ar';
   supportedLanguages: Language[] = ['ar', 'en'];
+  private destroy$ = new Subject<void>();
 
   constructor(private translationService: TranslationService) {
-    this.translationService.currentLanguage$.subscribe(lang => {
-      this.currentLanguage = lang;
-    });
+    this.translationService.currentLanguage$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(lang => {
+        this.currentLanguage = lang;
+      });
   }
 
   switchLanguage(language: Language): void {
     this.translationService.setLanguage(language);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 } 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
 @Component({
@@ -11,14 +11,7 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'waai';
-  // currentLang: Language = 'ar';
-  // currentDir: 'rtl' | 'ltr' = 'rtl';
+  title = 'waei';
 
-  constructor() {
-    // this.translationService.currentLanguage$.subscribe(lang => {
-    //   this.currentLang = lang;
-    //   this.currentDir = lang === 'ar' ? 'rtl' : 'ltr';
-    // });
-  } 
+  constructor() {}
 }

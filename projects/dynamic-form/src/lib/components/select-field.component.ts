@@ -232,9 +232,11 @@ export class SelectFieldComponent extends BaseFieldComponent implements OnInit, 
     this.searchTerm = '';
     this.filteredOptions = [...this.allOptions];
     setTimeout(() => {
-      const searchInput = document.querySelector('.search-input') as HTMLInputElement;
-      if (searchInput && this.field.searchable) {
-        searchInput.focus();
+      if (typeof document !== 'undefined') {
+        const searchInput = document.querySelector('.search-input') as HTMLInputElement;
+        if (searchInput && this.field.searchable) {
+          searchInput.focus();
+        }
       }
     }, 100);
   }

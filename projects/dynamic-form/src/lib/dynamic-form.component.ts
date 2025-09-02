@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectorRef, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormArray, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
@@ -59,6 +59,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
   private destroy$ = new Subject<void>();
+  // private translationService = inject(TranslationService);
 
   constructor(
     private fb: FormBuilder,
@@ -66,6 +67,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // this.config.direction = this.translationService.getCurrentLanguage() === 'ar' ? 'rtl' : 'ltr';
     this.initializeForm();
     if (this.initialValue) {
       this.form.patchValue(this.initialValue);

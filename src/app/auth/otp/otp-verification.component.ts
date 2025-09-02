@@ -66,6 +66,7 @@ export class OtpVerificationComponent implements OnInit, OnDestroy {
     
     // Listen to form changes for real-time validation
     this.otpControl.valueChanges.subscribe(value => {
+      console.log('value', value);
       this.clearMessages();
       if (value && value.length === 4) {
         // Auto-verify when 4 digits are entered
