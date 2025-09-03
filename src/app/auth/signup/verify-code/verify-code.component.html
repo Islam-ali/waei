@@ -1,0 +1,103 @@
+<div>
+    <div class="flex items-center justify-cente mb-6">
+        <span class="p-4 bg-white text-primary-700 rounded-lg border border-gray-200">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12 18H12.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+
+        </span>
+    </div>
+    <div class="flex flex-col space-y-4 mb-8">
+        <div class="font-semibold text-3xl">
+            <p>Verification Code</p>
+        </div>
+        <div class="text-gray-500 mb-8">
+            <p>We’ve sent a 4-digit code to your phone number ending in 0115. Please enter it below.</p>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    @if (successMessage) {
+    <!-- <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+        <div class="flex items-center justify-center">
+            <div class="ms-3">
+                <p class="text-sm font-medium text-green-800">{{ successMessage }}</p>
+            </div>
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+        </div>
+    </div> -->
+    }
+
+    <!-- Error Message -->
+    @if (isError && errorMessage) {
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="mr-3">
+                <p class="text-sm font-medium text-red-800">{{ errorMessage }}</p>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- Attempts Counter -->
+    <!-- @if (attempts > 0) {
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">
+                        المحاولات المستخدمة: <span class="font-medium text-primary-600">{{ attempts }}</span> من <span class="font-medium text-gray-600">{{ maxAttempts }}</span>
+                    </p>
+                </div>
+            } -->
+
+    <!-- Dynamic OTP Field -->
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+        <lib-otp-field [field]="otpField" [control]="otpControl" [showLabels]="true"
+            [showValidationMessages]="true"></lib-otp-field>
+            <div class="flex justify-between items-center space-y-4">
+                <app-countdown class="text-green-500" [countdown]="5 * 60"></app-countdown>
+                <span class="text-gray-500">Didn't receive code? <a
+                        class="text-indigo-600 hover:text-indigo-500 font-semibold" (click)="resendOtp()">Resend Code</a></span>
+            </div>
+        <!-- Manual Verify Button (fallback) -->
+        <div class="flex flex-col my-8">
+        <button type="button" (click)="onVerifyClick()"
+            [disabled]="isLoading || !otpControl.value || otpControl.value.length !== 4"
+            class="w-full bg-primary-700 text-white font-semibold py-3 rounded-lg hover:bg-primary-700 transition duration-300">
+            Verify
+        </button>
+        <div class="mt-6">
+            <a class="text-gray-600 hover:text-gray-800 font-semibold flex items-center justify-center" (click)="onPreviousStep()">
+                <span class="material-icons mr-1">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 19L8 12L15 5" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </span>
+
+                Previous
+            </a>
+        </div>
+        </div>
+    </form>
+
+    <!-- Additional Info -->
+    <div class="text-center text-sm text-gray-500">
+        <p>لم تستلم الرمز؟ تحقق من رسائل SMS أو البريد الإلكتروني</p>
+    </div>
+</div>

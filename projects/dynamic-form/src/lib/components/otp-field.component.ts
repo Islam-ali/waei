@@ -36,18 +36,17 @@ import {
       }
 
       <!-- Countdown Timer -->
-      @if (field.countdown) {
-        <div class="countdown-timer">
-          <p class="text-sm text-gray-600">
-            Time remaining:
-            <span class="font-medium text-primary-600">{{ formatTime((countdown$ | async) || 0) }}</span>
-          </p>
+      <!-- @if (field.countdown) {
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-green-500 font-semibold">{{ formatTime((countdown$ | async) || 0) }}</span>
+            <span class="text-gray-500">Didn't receive code? <a
+                    class="text-indigo-600 hover:text-indigo-500 font-semibold" href="#">Resend Code</a></span>
         </div>
-      }
+      } -->
 
       <!-- OTP Input Fields -->
       <div class="otp-container text-center mt-4" [ngClass]="field.class">
-        <div class="otp-inputs" [style.grid-template-columns]="'repeat(' + (field.otpLength || 4) + ', 58px)'">
+        <div class="otp-inputs" [style.grid-template-columns]="'repeat(' + (field.otpLength || 4) + ', 80px)'">
           @for (digit of otpArray; track $index) {
             <input
               #otpInput
@@ -72,7 +71,7 @@ import {
       </div>
 
       <!-- Resend Button -->
-      @if (field.onResend && field.canResend !== undefined) {
+      <!-- @if (field.onResend && field.canResend !== undefined) {
         <button
           type="button"
           (click)="resendOtp()"
@@ -81,7 +80,7 @@ import {
         >
           Resend Code
         </button>
-      }
+      } -->
 
       <!-- Validation Messages -->
       @if (showValidationMessages && hasError('required')) {
@@ -108,7 +107,7 @@ import {
       }
 
       .otp-input {
-        width: 3rem;
+        width: 4rem;
         height: 3rem;
         text-align: center;
         font-size: 1.25rem;

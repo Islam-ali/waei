@@ -1,0 +1,50 @@
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.countdown-display {
+  background: #f3f4f6;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.countdown-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.resend-section {
+  text-align: center;
+}
+
+.resend-button {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.resend-button:hover {
+  background: #d97706;
+}
+
+.resend-button:focus {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+.resend-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

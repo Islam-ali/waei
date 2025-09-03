@@ -115,7 +115,7 @@
             <!-- Action Section -->
             <div class="flex flex-col gap-2 items-start w-full">
                 <!-- Let's Start Button -->
-                <button class="w-full disabled:bg-primary-700 disabled:cursor-not-allowed bg-primary-900 hover:bg-primary-950 transition-colors rounded-lg py-3.5 px-4 flex items-center justify-center gap-2.5"
+                <button routerLink="/auth/signup" class="w-full disabled:bg-primary-700 disabled:cursor-not-allowed bg-primary-900 hover:bg-primary-950 transition-colors rounded-lg py-3.5 px-4 flex items-center justify-center gap-2.5"
                 [disabled]="!selectedAccountType"
                 >
                     <span class="font-semibold text-[15px] text-[#fff5ed] tracking-[0.075px] leading-normal">
@@ -132,7 +132,7 @@
                     <span class="font-normal text-gray-500 leading-5">
                         Do you have an account?
                     </span>
-                    <a href="#" class="font-medium text-blue-600 hover:text-blue-700 leading-5 transition-colors">
+                    <a routerLink="/auth/signin" class="font-medium text-blue-600 hover:text-blue-700 leading-5 transition-colors">
                         Sign In
                     </a>
                 </div>
