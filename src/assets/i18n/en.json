@@ -130,6 +130,15 @@
     "PASSWORD_MISMATCH": "Passwords do not match",
     "COMPANY_NAME_PATTERN": "Company name contains invalid characters"
   },
+  "ACCOUNT_TYPE": {
+    "TITLE": "Let's get you started",
+    "SUBTITLE": "Select whether you want to create an account as an individual or on behalf of a company.",
+    "INDIVIDUAL": "Individual",
+    "COMPANY": "Company",
+    "LETS_START": "Let's Start",
+    "HAVE_ACCOUNT": "Do you have an account?",
+    "SIGN_IN": "Sign In"
+  },
   "BUTTONS": {
     "CONTINUE": "Continue",
     "PREVIOUS": "Previous",

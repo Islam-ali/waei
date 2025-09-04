@@ -130,6 +130,15 @@
     "PASSWORD_MISMATCH": "كلمات المرور غير متطابقة",
     "COMPANY_NAME_PATTERN": "اسم الشركة يحتوي على أحرف غير صحيحة"
   },
+  "ACCOUNT_TYPE": {
+    "TITLE": "دعنا نبدأ",
+    "SUBTITLE": "اختر ما إذا كنت تريد إنشاء حساب كفرد أو نيابة عن شركة.",
+    "INDIVIDUAL": "فرد",
+    "COMPANY": "شركة",
+    "LETS_START": "دعنا نبدأ",
+    "HAVE_ACCOUNT": "هل لديك حساب؟",
+    "SIGN_IN": "تسجيل الدخول"
+  },
   "BUTTONS": {
     "CONTINUE": "متابعة",
     "PREVIOUS": "السابق",

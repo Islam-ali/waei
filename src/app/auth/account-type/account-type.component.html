@@ -13,27 +13,7 @@
 
         <!-- Language Selector -->
         <nav class="flex h-[38px] items-center">
-            <button class="flex gap-2 items-center justify-center px-3 py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14">
-                    <g clip-path="url(#clip0_1_9566)">
-                        <path d="M2.91667 4.66667L6.41667 8.16667" stroke="#1F2937" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M2.33333 8.16667L5.83333 4.66667L7 2.91667" stroke="#1F2937" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M1.16667 2.91667H8.16667" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M4.08333 1.16667H4.66667" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12.8333 12.8333L9.91667 7L7 12.8333" stroke="black" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M8.16667 10.5H11.6667" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_1_9566">
-                            <rect fill="white" height="14" width="14" />
-                        </clipPath>
-                    </defs>
-                </svg>
-                <span class="font-semibold text-[15px] text-gray-800">EN</span>
-            </button>
+            <app-language-switcher></app-language-switcher> 
         </nav>
     </header>
 
@@ -44,10 +24,10 @@
             <div class="flex flex-col gap-6 items-center w-full">
                 <div class="flex flex-col gap-2 items-center text-center w-full">
                     <h1 class="font-semibold text-4xl text-gray-800 tracking-[0.18px] w-full leading-normal">
-                        Let's get you started
+                        {{ 'ACCOUNT_TYPE.TITLE' | translate }}
                     </h1>
                     <p class="font-normal text-sm text-gray-500 tracking-[0.08px] w-full leading-6">
-                        Select whether you want to create an account as an individual or on behalf of a company.
+                        {{ 'ACCOUNT_TYPE.SUBTITLE' | translate }}
                     </p>
                 </div>
             </div>
@@ -72,7 +52,7 @@
                             </svg>
                         </div>
                         <h2 class="font-medium text-base text-center tracking-[0.08px] leading-6">
-                            Individual
+                            {{ 'ACCOUNT_TYPE.INDIVIDUAL' | translate }}
                         </h2>
                     </div>
                 </div>
@@ -106,7 +86,7 @@
                             </svg>
                         </div>
                         <h2 class="font-medium text-base text-center tracking-[0.08px] leading-6">
-                            Company
+                            {{ 'ACCOUNT_TYPE.COMPANY' | translate }}
                         </h2>
                     </div>
                 </div>
@@ -119,9 +99,9 @@
                 [disabled]="!selectedAccountType"
                 >
                     <span class="font-semibold text-[15px] text-[#fff5ed] tracking-[0.075px] leading-normal">
-                        Let's Start
+                        {{ 'ACCOUNT_TYPE.LETS_START' | translate }}
                     </span>
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14">
+                    <svg class="w-3.5 h-3.5 rtl:rotate-180" fill="none" viewBox="0 0 14 14">
                         <path d="M5.25 10.5L8.75 7L5.25 3.5" stroke="#FFF5ED" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
@@ -130,10 +110,10 @@
                 <!-- Sign In Link -->
                 <div class="flex gap-2.5 items-center justify-center w-full py-4 text-sm tracking-[0.07px]">
                     <span class="font-normal text-gray-500 leading-5">
-                        Do you have an account?
+                        {{ 'ACCOUNT_TYPE.HAVE_ACCOUNT' | translate }}
                     </span>
                     <a routerLink="/auth/signin" class="font-medium text-blue-600 hover:text-blue-700 leading-5 transition-colors">
-                        Sign In
+                        {{ 'ACCOUNT_TYPE.SIGN_IN' | translate }}
                     </a>
                 </div>
             </div>
