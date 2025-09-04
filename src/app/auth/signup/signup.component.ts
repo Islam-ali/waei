@@ -1,28 +1,18 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LanguageSwitcherComponent } from "../../shared/components/language-switcher/language-switcher.component";
-import { YourDetailsComponent } from "./your-details/your-details.component";
-import { VerifyCodeComponent } from "./verify-code/verify-code.component";
+import { LanguageSwitcherComponent } from "../../shared/components";
 
-enum Step {
-  YourDetails = 1,
-  VerifyCode = 2,
-  UserNameAndEmail = 3,
-  CreatePassword = 4,
-}
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, RouterModule, LanguageSwitcherComponent, YourDetailsComponent, VerifyCodeComponent],
+  imports: [CommonModule, RouterModule, LanguageSwitcherComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 
 export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
   platformId = inject(PLATFORM_ID);
-  currentStep: Step = Step.YourDetails;
-  Step = Step;
   ngOnInit() {
     // Only initialize if we're in browser
     if (isPlatformBrowser(this.platformId)) {
@@ -45,18 +35,7 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  onNextStep() {
-    console.log('onNextStep', this.currentStep);
-    if (this.currentStep < Step.CreatePassword) {
-      this.currentStep++;
-    }
-  }
 
-  onPreviousStep() {
-    if (this.currentStep > Step.YourDetails) {
-      this.currentStep--;
-    }
-  }
 
   ngOnDestroy() {
     // Clear autoplay interval

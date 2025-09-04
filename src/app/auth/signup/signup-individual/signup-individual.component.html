@@ -1,4 +1,33 @@
-
-<lib-dynamic-form [fields]="formFields" (formSubmit)="onSubmit($event)" [config]="formConfig"
-  (buttonClick)="onSubmit($event)">
-</lib-dynamic-form>
+<div class="min-h-[calc(100vh-7.5rem)] flex flex-col">
+  <div class="flex-1">
+    @switch (currentStep) {
+    @case (Step.YourDetails) {
+    <app-your-details (nextStep)="onNextStep()"></app-your-details>
+    }
+    @case (Step.VerifyCode) {
+    <app-verify-code (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
+    }
+    @case (Step.UserNameAndEmail) {
+    <app-username-and-email (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-username-and-email>
+    }
+    @case (Step.SelectSource) {
+    <app-select-source (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-select-source>
+    }
+    @case (Step.CreatePassword) {
+    <app-create-password (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
+    }
+    }
+  </div>
+  <div class="flex justify-center items-center  mb-4">
+    <span id="step-1" [ngClass]="currentStep === Step.YourDetails  ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2'"
+      class="h-2 rounded-full mx-1"></span>
+    <span id="step-2" [ngClass]="currentStep === Step.VerifyCode ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2'"
+      class="h-2 rounded-full mx-1"></span>
+    <span id="step-3" [ngClass]="currentStep === Step.UserNameAndEmail ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2'"
+      class="h-2 rounded-full mx-1"></span>
+    <span id="step-4" [ngClass]="currentStep === Step.SelectSource ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2'"
+      class="h-2 rounded-full mx-1"></span>
+    <span id="step-5" [ngClass]="currentStep === Step.CreatePassword ? 'bg-orange-600 w-8' : 'bg-gray-300 w-2'"
+      class="h-2 rounded-full mx-1"></span>
+  </div>
+</div>

@@ -18,7 +18,7 @@ export abstract class BaseFieldComponent implements ControlValueAccessor {
   @Input() showLabels = true;
   @Input() showValidationMessages = true;
   @Input() direction: 'ltr' | 'rtl' = 'ltr';
-@Input() control!: FormControl;
+  @Input() control!: FormControl;
   value: any;
   touched = false;
   dirty = false;

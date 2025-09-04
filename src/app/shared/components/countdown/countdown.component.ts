@@ -34,19 +34,16 @@ export class CountdownComponent implements OnInit {
   }
 
   private bindCountdownStream(): void {
-    console.log('Binding countdown stream');
 
     // Subscribe to reset$ directly
     this.reset$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((startSeconds) => {
-      console.log('Reset$ received:', startSeconds);
       this.startCountdown(startSeconds);
     });
   }
 
   private startCountdown(startSeconds: number): void {
-    console.log('Starting countdown with:', startSeconds);
 
     // Clear any existing timer
     if (this.countdownTimer) {
@@ -77,7 +74,6 @@ export class CountdownComponent implements OnInit {
   }
 
   private resetCountdown(seconds: number): void {
-    console.log('Resetting countdown to:', seconds);
 
     // Clear existing timer first
     if (this.countdownTimer) {
@@ -86,9 +82,7 @@ export class CountdownComponent implements OnInit {
     }
 
     this.canResend$.next(false);
-    console.log('About to emit to reset$');
     this.reset$.next(seconds);
-    console.log('Emitted to reset$');
   }
 
   formatTime(seconds: number): string {

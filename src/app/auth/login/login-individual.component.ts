@@ -158,16 +158,11 @@ export class LoginIndividualComponent implements OnInit {
 
     switchLoginMethod(method: 'phone' | 'email'): void {
         this.loginMethod = method;
-        console.log(this.loginMethod);
     }
 
 
 
     onSubmit(formData: any): void {
-        console.log('Login form submitted:', {
-            ...formData,
-            loginMethod: this.loginMethod
-        });
         this.router.navigate(['/auth/otp-verification']);
         // Handle form submission
     }

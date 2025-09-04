@@ -1,44 +1,139 @@
 {
-  "COMMON": {
-    "WELCOME": "مرحباً",
-    "HELLO": "أهلاً وسهلاً",
-    "LOADING": "جاري التحميل...",
-    "SUBMIT": "إرسال",
-    "CANCEL": "إلغاء",
-    "SAVE": "حفظ",
-    "DELETE": "حذف",
-    "EDIT": "تعديل",
-    "SEARCH": "بحث",
-    "CLOSE": "إغلاق",
-    "YES": "نعم",
-    "NO": "لا",
-    "OK": "موافق",
-    "ERROR": "خطأ",
-    "SUCCESS": "نجح",
-    "WARNING": "تحذير",
-    "INFO": "معلومات"
+  "YOUR_DETAILS": {
+    "TITLE": "تفاصيلك الشخصية",
+    "SUBTITLE": "أدخل اسمك الأول واسم العائلة ورقم الهاتف للبدء.",
+    "TERMS_TEXT": "أوافق على",
+    "TERMS_LINK": "الشروط والأحكام",
+    "AND": "و",
+    "PRIVACY_LINK": "سياسة الخصوصية"
   },
-  "NAVIGATION": {
-    "HOME": "الرئيسية",
-    "ABOUT": "حول",
-    "CONTACT": "اتصل بنا",
-    "SETTINGS": "الإعدادات",
-    "PROFILE": "الملف الشخصي",
-    "LOGOUT": "تسجيل الخروج"
+  "USERNAME_EMAIL": {
+    "TITLE": "اسم المستخدم والبريد الإلكتروني",
+    "SUBTITLE": "لقد أنشأنا لك اسم مستخدم - يمكنك الاحتفاظ به أو تغييره. يرجى إضافة عنوان بريدك الإلكتروني أيضاً.",
+    "OPTIONAL": "اختياري"
   },
-  "AUTH": {
-    "LOGIN": "تسجيل الدخول",
-    "REGISTER": "تسجيل حساب جديد",
+  "SELECT_SOURCE": {
+    "TITLE": "كيف سمعت عن واي؟",
+    "SUBTITLE": "اختر المصدر الذي ينطبق عليك بشكل أفضل."
+  },
+  "CREATE_PASSWORD": {
+    "TITLE": "حماية حسابك",
+    "SUBTITLE": "قم بتعيين كلمة مرور قوية وتأكيدها. وافق على الشروط لإنهاء تسجيلك.",
+    "STRENGTH_LABEL": "قوة كلمة المرور",
+    "REQUIREMENTS": {
+      "MIN_LENGTH": "8 أحرف على الأقل",
+      "UPPERCASE": "حرف كبير واحد",
+      "LOWERCASE": "حرف صغير واحد",
+      "NUMBER": "رقم واحد",
+      "SPECIAL_CHAR": "رمز خاص واحد (!@#$%^&*)"
+    }
+  },
+  "FIELDS": {
+    "FIRST_NAME": "الاسم الأول",
+    "LAST_NAME": "اسم العائلة",
+    "PHONE_NUMBER": "رقم الهاتف",
+    "TERMS_CONDITIONS": "الشروط والأحكام",
+    "USERNAME": "اسم المستخدم",
+    "EMAIL": "البريد الإلكتروني",
+    "PASSWORD": "كلمة المرور",
+    "CONFIRM_PASSWORD": "تأكيد كلمة المرور"
+  },
+  "PLACEHOLDERS": {
+    "FIRST_NAME": "مثال: أحمد",
+    "LAST_NAME": "مثال: محمد",
+    "PHONE_NUMBER": "+966 (000) 000-0000",
+    "USERNAME": "مثال: أحمد",
+    "EMAIL": "مثال: Ahmed@gmail.com",
+    "PASSWORD": "أدخل كلمة المرور",
+    "CONFIRM_PASSWORD": "أدخل كلمة المرور مرة أخرى"
+  },
+  "SOURCE": {
+    "ALDREES_WEBSITE": "موقع الدريس",
+    "NEWSPAPER": "جريدة",
+    "SOCIAL_MEDIA": "وسائل التواصل الاجتماعي",
+    "TELEVISION": "تلفزيون",
+    "INTERNET": "إنترنت",
+    "RADIO": "راديو",
+    "OTHER": "أخرى"
+  },
+  "VALIDATION": {
+    "REQUIRED": "{{field}} مطلوب",
+    "ACCEPT_TERMS": "يجب أن توافق على الشروط والأحكام",
+    "MIN_LENGTH": "{{field}} يجب أن يكون على الأقل {{length}} أحرف",
+    "MAX_LENGTH": "{{field}} يجب ألا يتجاوز {{length}} حرف",
+    "PHONE_PATTERN": "رقم الهاتف يجب أن يكون 9 أرقام",
+    "NAME_PATTERN": "الاسم يمكن أن يحتوي على أحرف ومسافات فقط",
+    "INVALID_FORMAT": "تنسيق غير صحيح",
+    "EMAIL_INVALID": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "USERNAME_PATTERN": "اسم المستخدم يمكن أن يحتوي على أحرف وأرقام وشرطة سفلية فقط",
+    "PASSWORD_MIN_LENGTH": "كلمة المرور يجب أن تكون على الأقل {{length}} أحرف",
+    "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل، وحرف صغير واحد، ورقم واحد، ورمز خاص واحد (!@#$%^&*)",
+    "PASSWORD_MISMATCH": "كلمات المرور غير متطابقة"
+  },
+  "VERIFY_CODE": {
+    "TITLE": "رمز التحقق",
+    "SUBTITLE": "لقد أرسلنا رمزاً مكوناً من 4 أرقام إلى رقم هاتفك المنتهي بـ 0115. يرجى إدخاله أدناه.",
+    "DIDNT_RECEIVE": "لم تستلم الرمز؟",
+    "RESEND_CODE": "إعادة إرسال الرمز",
+    "OTP_SENT_SUCCESS": "تم إرسال رمز التحقق بنجاح",
+    "OTP_SEND_FAILED": "فشل في إرسال رمز التحقق، يرجى المحاولة مرة أخرى",
+    "MAX_ATTEMPTS_REACHED": "تم الوصول للحد الأقصى من المحاولات، يرجى طلب رمز تحقق جديد",
+    "ACCOUNT_VERIFIED": "تم التحقق من الحساب بنجاح!",
+    "OTP_INCORRECT": "رمز التحقق غير صحيح. المحاولات المتبقية: {{remaining}}",
+    "VERIFICATION_ERROR": "حدث خطأ أثناء التحقق من رمز التحقق، يرجى المحاولة مرة أخرى",
+    "ENTER_4_DIGIT_OTP": "يرجى إدخال رمز التحقق المكون من 4 أرقام",
+    "ENTER_CORRECT_OTP": "يرجى إدخال رمز التحقق الصحيح"
+  },
+  "COMPANY_REGISTRATION": {
+    "TITLE": "تسجيل الشركة",
+    "SUBTITLE": "أنشئ حساب شركتك للوصول إلى خدمات واي"
+  },
+  "COMPANY_TYPE": {
+    "PRIVATE": "خاصة",
+    "GOVERNMENT": "حكومية"
+  },
+  "FIELDS": {
+    "FIRST_NAME": "الاسم الأول",
+    "LAST_NAME": "اسم العائلة",
+    "PHONE_NUMBER": "رقم الهاتف",
+    "TERMS_CONDITIONS": "الشروط والأحكام",
+    "USERNAME": "اسم المستخدم",
     "EMAIL": "البريد الإلكتروني",
     "PASSWORD": "كلمة المرور",
     "CONFIRM_PASSWORD": "تأكيد كلمة المرور",
-    "FORGOT_PASSWORD": "نسيت كلمة المرور؟",
-    "REMEMBER_ME": "تذكرني"
+    "COMPANY_TYPE": "نوع الشركة",
+    "COMPANY_NAME": "اسم الشركة"
+  },
+  "PLACEHOLDERS": {
+    "FIRST_NAME": "مثال: أحمد",
+    "LAST_NAME": "مثال: محمد",
+    "PHONE_NUMBER": "+966 (000) 000-0000",
+    "USERNAME": "مثال: أحمد",
+    "EMAIL": "مثال: Ahmed@gmail.com",
+    "PASSWORD": "أدخل كلمة المرور",
+    "CONFIRM_PASSWORD": "أدخل كلمة المرور مرة أخرى",
+    "COMPANY_NAME": "مثال: شركة أحمد",
+    "COMPANY_EMAIL": "مثال: contact@company.com"
   },
   "VALIDATION": {
-    "REQUIRED": "هذا الحقل مطلوب",
-    "EMAIL_INVALID": "البريد الإلكتروني غير صحيح",
-    "PASSWORD_MIN": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
-    "PASSWORD_MATCH": "كلمات المرور غير متطابقة"
+    "REQUIRED": "{{field}} مطلوب",
+    "ACCEPT_TERMS": "يجب أن توافق على الشروط والأحكام",
+    "MIN_LENGTH": "{{field}} يجب أن يكون على الأقل {{length}} أحرف",
+    "MAX_LENGTH": "{{field}} يجب ألا يتجاوز {{length}} حرف",
+    "PHONE_PATTERN": "رقم الهاتف يجب أن يكون 9 أرقام",
+    "NAME_PATTERN": "الاسم يمكن أن يحتوي على أحرف ومسافات فقط",
+    "INVALID_FORMAT": "تنسيق غير صحيح",
+    "EMAIL_INVALID": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "USERNAME_PATTERN": "اسم المستخدم يمكن أن يحتوي على أحرف وأرقام وشرطة سفلية فقط",
+    "PASSWORD_MIN_LENGTH": "كلمة المرور يجب أن تكون على الأقل {{length}} أحرف",
+    "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل، وحرف صغير واحد، ورقم واحد، ورمز خاص واحد (!@#$%^&*)",
+    "PASSWORD_MISMATCH": "كلمات المرور غير متطابقة",
+    "COMPANY_NAME_PATTERN": "اسم الشركة يحتوي على أحرف غير صحيحة"
+  },
+  "BUTTONS": {
+    "CONTINUE": "متابعة",
+    "PREVIOUS": "السابق",
+    "CREATE_ACCOUNT": "إنشاء حساب",
+    "VERIFY": "تحقق"
   }
-} 
+}

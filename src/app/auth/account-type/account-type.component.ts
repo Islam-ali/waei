@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './account-type.component.scss'
 })
 export class AccountTypeComponent {
-  selectedAccountType: 'individual' | 'company' | null = null;
+  selectedAccountType: 'individual' | 'company' | null = 'individual';
 
   onSelectAccountType(type: 'individual' | 'company') {
     this.selectedAccountType = type;

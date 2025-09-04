@@ -89,7 +89,7 @@ function handleUnauthorized(storageService: StorageService): void {
   
   // Redirect to login page
   // Note: In a real app, you might want to use Router service
-  console.log('User unauthorized, redirecting to login...');
+  console.log('User unauthorized, redirecting to login...');  
 }
 
 function handleForbidden(): void {

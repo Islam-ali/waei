@@ -1,0 +1,111 @@
+<div class="flex items-center mb-6">
+    <span class="p-4 bg-white rounded-lg border border-gray-200">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 22V4C6 3.46957 6.21071 2.96086 6.58579 2.58579C6.96086 2.21071 7.46957 2 8 2H16C16.5304 2 17.0391 2.21071 17.4142 2.58579C17.7893 2.96086 18 3.46957 18 4V22H6Z" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 12H4C3.46957 12 2.96086 12.2107 2.58579 12.5858C2.21071 12.9609 2 13.4696 2 14V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H6" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 9H20C20.5304 9 21.0391 9.21071 21.4142 9.58579C21.7893 9.96086 22 10.4696 22 11V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22H18" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 6H14" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 10H14" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 14H14" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 18H14" stroke="#6366F1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </span>
+</div>
+<h1 class="text-3xl font-bold text-gray-800 mb-2">{{ 'COMPANY_REGISTRATION.TITLE' | translate }}</h1>
+<p class="text-gray-500 mb-8">{{ 'COMPANY_REGISTRATION.SUBTITLE' | translate }}</p>
+
+<form [formGroup]="companyForm" (ngSubmit)="onNextStep()">
+    <!-- Company Type Selection -->
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'FIELDS.COMPANY_TYPE' | translate }}</label>
+        <div class="mt-1 flex p-1 rounded-md border border-gray-300">
+            <label class="flex-1 text-center text-gray-800 py-2 px-4 rounded-md cursor-pointer"
+                [ngClass]="{'bg-gray-100 border-gray-300': isSelected('private'), 'bg-white': !isSelected('private')}"
+                (click)="onCompanyTypeChange('private')">
+                {{ 'COMPANY_TYPE.PRIVATE' | translate }}
+            </label>
+            <label class="flex-1 text-center text-gray-800 py-2 px-4 rounded-md border-gray-300 cursor-pointer"
+                [ngClass]="{'bg-gray-100 border-gray-300': isSelected('government'), 'bg-white': !isSelected('government')}"
+                (click)="onCompanyTypeChange('government')">
+                {{ 'COMPANY_TYPE.GOVERNMENT' | translate }}
+            </label>
+        </div>
+        <div *ngIf="isFieldInvalid('companyType')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('companyType') }}
+        </div>
+    </div>
+
+    <!-- Company Name -->
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="company-name">{{ 'FIELDS.COMPANY_NAME' | translate }}</label>
+        <input
+            formControlName="companyName"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            [ngClass]="{
+                'border-gray-300': !isFieldInvalid('companyName'),
+                'border-red-500': isFieldInvalid('companyName')
+            }"
+            id="company-name" 
+            [placeholder]="'PLACEHOLDERS.COMPANY_NAME' | translate" 
+            type="text" />
+        <div *ngIf="isFieldInvalid('companyName')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('companyName') }}
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="company-email">{{ 'FIELDS.EMAIL' | translate }}</label>
+        <input
+            formControlName="email"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            [ngClass]="{
+                'border-gray-300': !isFieldInvalid('email'),
+                'border-red-500': isFieldInvalid('email')
+            }"
+            id="company-email" 
+            [placeholder]="'PLACEHOLDERS.COMPANY_EMAIL' | translate" 
+            type="email" />
+        <div *ngIf="isFieldInvalid('email')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('email') }}
+        </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="phone-number">{{ 'FIELDS.PHONE_NUMBER' | translate }}</label>
+        <div class="flex">
+            <div class="relative">
+                <select class="appearance-none border border-gray-300 rounded-s-lg  pe-10 ps-4 py-3 focus:outline-none">
+                    <option>KSA</option>
+                </select>
+                <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+                    🇸🇦
+                </div>
+            </div>
+            <input 
+                formControlName="phoneNumber"
+                appPhoneNumber
+                [maxlength]="9"
+                class="w-full px-4 py-3 border ltr:rounded-e-lg rtl:rounded-s-lg ps-10 pe-4 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                [ngClass]="{
+                    'border-gray-300': !isFieldInvalid('phoneNumber'),
+                    'border-red-500': isFieldInvalid('phoneNumber')
+                }"
+                id="phone-number" 
+                [placeholder]="'PLACEHOLDERS.PHONE_NUMBER' | translate" 
+                type="tel" />
+        </div>
+        <div *ngIf="isFieldInvalid('phoneNumber')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('phoneNumber') }}
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+        class="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        type="submit"
+        [disabled]="companyForm.invalid">
+        {{ 'BUTTONS.CONTINUE' | translate }}
+    </button>
+</form>

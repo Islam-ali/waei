@@ -1,6 +1,6 @@
 @if(form && fields && fields.length > 0) {
-<form [formGroup]="form" (ngSubmit)="onSubmit()" [class]="getClassString(config?.class)"
-  [style]="getStyleString(config?.style)" [dir]="config.direction || 'ltr'" class="dynamic-form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" [class]="getClassString(config.class)"
+  [style]="getStyleString(config.style)" [dir]="config.direction || 'ltr'" class="dynamic-form">
 
   <!-- Render Fields -->
   @for (field of fields; track $index + '_' + field.name) {

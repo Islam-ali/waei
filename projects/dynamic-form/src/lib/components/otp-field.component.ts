@@ -28,7 +28,7 @@ import {
 @Component({
   selector: 'lib-otp-field',
   standalone: true,
-  imports: [NgClass, AsyncPipe , CommonModule],
+  imports: [NgClass , CommonModule],
   template: `
     <div class="form-field">
       @if (field.description) {
@@ -46,8 +46,11 @@ import {
 
       <!-- OTP Input Fields -->
       <div class="otp-container text-center mt-4" [ngClass]="field.class">
-        <div class="otp-inputs" [style.grid-template-columns]="'repeat(' + (field.otpLength || 4) + ', 80px)'">
+        <div class="otp-inputs">
           @for (digit of otpArray; track $index) {
+            @if ($index == 2) {
+              <span class="w-8 flex justify-center items-center"> <span class="w-4 h-[1px] bg-gray-400"></span> </span>
+            }
             <input
               #otpInput
               type="text"
@@ -62,7 +65,7 @@ import {
               (keydown)="onOtpKeydown($event, $index)"
               (paste)="onPaste($event)"
               class="otp-input"
-              [class.is-invalid]="isFieldInvalid()"
+              [class.is-invalid]="isFieldInvalid() || hasCustomErrorMessage()"
               [class.is-valid]="isFieldValid()"
               [class.is-disabled]="disabled "
             />
@@ -92,6 +95,9 @@ import {
       @if (showValidationMessages && hasError('minlength')) {
         <div class="field-error">{{ getErrorMessage('minLength') }}</div>
       }
+      @if (showValidationMessages && hasCustomErrorMessage()) {
+        <div class="field-error">{{ getErrorMessage('custom') }}</div>
+      }
     </div>
   `,
   styles: [
@@ -101,25 +107,29 @@ import {
       }
 
       .otp-inputs {
-        display: grid;
+        display: flex;
         gap: 0.5rem;
         justify-content: center;
+        align-items: center;
       }
 
       .otp-input {
-        width: 4rem;
+        width: 5rem;
         height: 3rem;
         text-align: center;
         font-size: 1.25rem;
-        border: 2px solid #d1d5db;
+        border: 1px solid #d1d5db;
         border-radius: 0.5rem;
         outline: none;
         transition: all 0.2s ease;
+        @media (max-width: 768px) {
+          width: 4rem;
+          height: 3rem;
+        }
       }
 
       .otp-input:focus {
         border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
       }
 
       .otp-input.is-invalid {
@@ -186,6 +196,10 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   private reset$ = new Subject<number>();
   private cdr = inject(ChangeDetectorRef);
   private countdownTimer?: any;
+  
+  // Error handling properties
+  private customError: string = '';
+  private hasCustomError: boolean = false;
 
   constructor() {
     super();
@@ -217,20 +231,15 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   }
 
   private bindCountdownStream(): void {
-    console.log('Binding countdown stream');
-    
     // Subscribe to reset$ directly
     this.reset$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((startSeconds) => {
-      console.log('Reset$ received:', startSeconds);
       this.startCountdown(startSeconds);
     });
   }
 
   private startCountdown(startSeconds: number): void {
-    console.log('Starting countdown with:', startSeconds);
-    
     // Clear any existing timer
     if (this.countdownTimer) {
       clearInterval(this.countdownTimer);
@@ -260,8 +269,6 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   }
 
   private resetCountdown(seconds: number): void {
-    console.log('Resetting countdown to:', seconds);
-    
     // Clear existing timer first
     if (this.countdownTimer) {
       clearInterval(this.countdownTimer);
@@ -269,9 +276,7 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
     }
     
     this.canResend$.next(false);
-    console.log('About to emit to reset$');
     this.reset$.next(seconds);
-    console.log('Emitted to reset$');
   }
 
   onOtpInput(event: any, fieldIndex: number): void {
@@ -281,6 +286,11 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
     const numericValue = value.replace(/[^0-9]/g, '').substring(0, 1);
     input.value = numericValue;
     this.otpArray[fieldIndex] = numericValue;
+
+    // Clear custom error when user starts typing
+    if (this.hasCustomError) {
+      this.clearError();
+    }
 
     if (numericValue && fieldIndex < this.otpArray.length - 1) {
       setTimeout(() => this.focusInput(fieldIndex + 1), 10);
@@ -388,5 +398,95 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }
+
+  // Error handling methods
+  /**
+   * Set a custom error message on the OTP field
+   * @param errorMessage - The error message to display
+   */
+  setError(errorMessage: string): void {
+    this.customError = errorMessage;
+    this.hasCustomError = true;
+    
+    // Force change detection
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Clear any custom error messages
+   */
+  clearError(): void {
+    this.customError = '';
+    this.hasCustomError = false;
+    
+    // Force change detection
+    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Check if there's a custom error
+   */
+  hasCustomErrorMessage(): boolean {
+    const hasError = this.hasCustomError && !!this.customError && this.customError.length > 0;  
+    return hasError;
+  }
+
+  /**
+   * Get the custom error message
+   */
+  getCustomErrorMessage(): string {
+    return this.customError;
+  }
+
+  /**
+   * Override the base field invalid check to include custom errors
+   */
+  override isFieldInvalid(): boolean {
+    return super.isFieldInvalid() || this.hasCustomError;
+  }
+
+  /**
+   * Override the base field error check to include custom errors
+   */
+  override hasError(errorType: string): boolean {
+    if (errorType === 'custom' && this.hasCustomError) {
+      return true;
+    }
+    return super.hasError(errorType);
+  }
+
+  /**
+   * Override the base field error message to include custom errors
+   */
+  override getErrorMessage(errorType: string): string {
+    if (errorType === 'custom' && this.hasCustomError) {
+      return this.customError;
+    }
+    return super.getErrorMessage(errorType);
+  }
+
+  /**
+   * Clear the OTP field and reset to initial state
+   */
+  clearField(): void {
+    this.otpArray = new Array(this.field.otpLength || 4).fill('');
+    this.otpInputs.forEach((inputRef) => {
+      inputRef.nativeElement.value = '';
+    });
+    this.updateValue();
+    this.clearError();
+    this.focusInput(0);
+  }
+
+  /**
+   * Reset the field to its initial state
+   */
+  resetField(): void {
+    this.clearField();
+    this.dirty = false;
+    this.touched = false;
   }
 }

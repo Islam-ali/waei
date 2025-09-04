@@ -45,11 +45,6 @@ export const AUTHENTICATION_ROUTES: Routes = [
         title: 'login individual'
       },
       {
-        path: 'otp-verification',
-        loadComponent: () => import('./otp/otp-verification.component').then(m => m.OtpVerificationComponent),
-        title: 'otp verification'
-      },
-      {
         path: 'forgot-password',
         loadComponent: () => import('./forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
         title: 'forgot password'

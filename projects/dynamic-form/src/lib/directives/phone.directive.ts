@@ -1,39 +1,36 @@
-import { CommonModule } from '@angular/common';
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appPhoneNumber]',
   standalone: true,
 })
 export class PhoneNumberDirective {
-  @Input('appPhoneNumber') prefix: string = ''; // يجي من بره الديناميكية
 
-  constructor(private el: ElementRef<HTMLInputElement>, private control: NgControl) {}
+  @Input() maxlength: number | undefined;
+
+  constructor(private el: ElementRef<HTMLInputElement>) {}
 
   @HostListener('input', ['$event'])
-  onInput(event: Event) {
+  onInputChange(event: Event): void {
     const input = this.el.nativeElement;
+    let value = input.value;
 
-    // ناخد اللي المستخدم كتبه
-    let digits = input.value.replace(/\D/g, '');
+    // اسمح بالأرقام فقط
+    value = value.replace(/[^0-9]/g, '');
 
-    // ممكن تضيف شروط خاصة (مثلاً السعودية لازم تبدأ بـ 5)
-    if (this.prefix === '+966' && digits && !digits.startsWith('5')) {
-      digits = '5' + digits.replace(/^5*/, '');
+    // طبّق الـ maxlength لو موجود
+    if (this.maxlength && value.length > this.maxlength) {
+      value = value.substring(0, this.maxlength);
     }
 
-    // حد أقصى 9 أرقام للسعودية (تقدر تخصص حسب الدولة)
-    if (this.prefix === '+966' && digits.length > 9) {
-      digits = digits.slice(0, 9);
-    }
+    input.value = value;
+  }
 
-    // نخلي الـ input يعرض بس الأرقام بدون prefix
-    input.value = digits;
-
-    // نخزن في الـ FormControl القيمة كاملة بالـ prefix
-    if (this.control?.control) {
-      this.control.control.setValue(digits ? this.prefix + digits : '');
+  @HostListener('keypress', ['$event'])
+  onKeyPress(event: KeyboardEvent): void {
+    // امنع أي مفتاح غير رقم
+    if (!/[0-9]/.test(event.key)) {
+      event.preventDefault();
     }
   }
 }

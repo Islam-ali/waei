@@ -1,44 +1,139 @@
 {
-  "COMMON": {
-    "WELCOME": "Welcome",
-    "HELLO": "Hello",
-    "LOADING": "Loading...",
-    "SUBMIT": "Submit",
-    "CANCEL": "Cancel",
-    "SAVE": "Save",
-    "DELETE": "Delete",
-    "EDIT": "Edit",
-    "SEARCH": "Search",
-    "CLOSE": "Close",
-    "YES": "Yes",
-    "NO": "No",
-    "OK": "OK",
-    "ERROR": "Error",
-    "SUCCESS": "Success",
-    "WARNING": "Warning",
-    "INFO": "Info"
+  "YOUR_DETAILS": {
+    "TITLE": "Your Details",
+    "SUBTITLE": "Enter your first name, last name, and phone number to begin.",
+    "TERMS_TEXT": "I agree to the",
+    "TERMS_LINK": "Terms & Conditions",
+    "AND": "and",
+    "PRIVACY_LINK": "Privacy Policy"
   },
-  "NAVIGATION": {
-    "HOME": "Home",
-    "ABOUT": "About",
-    "CONTACT": "Contact",
-    "SETTINGS": "Settings",
-    "PROFILE": "Profile",
-    "LOGOUT": "Logout"
+  "USERNAME_EMAIL": {
+    "TITLE": "Username & Email",
+    "SUBTITLE": "We've created a username for you—you can keep it or change it. Please add your email address as well.",
+    "OPTIONAL": "optional"
   },
-  "AUTH": {
-    "LOGIN": "Login",
-    "REGISTER": "Register",
+  "SELECT_SOURCE": {
+    "TITLE": "How did you hear about Waie?",
+    "SUBTITLE": "Select the source that best applies."
+  },
+  "CREATE_PASSWORD": {
+    "TITLE": "Protect Your Account",
+    "SUBTITLE": "Set a strong password and confirm it. Agree to the terms to finish your registration.",
+    "STRENGTH_LABEL": "Password strength",
+    "REQUIREMENTS": {
+      "MIN_LENGTH": "At least 8 characters",
+      "UPPERCASE": "One uppercase letter",
+      "LOWERCASE": "One lowercase letter",
+      "NUMBER": "One number",
+      "SPECIAL_CHAR": "One special character (!@#$%^&*)"
+    }
+  },
+  "FIELDS": {
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "PHONE_NUMBER": "Phone Number",
+    "TERMS_CONDITIONS": "Terms and Conditions",
+    "USERNAME": "Username",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password"
+  },
+  "PLACEHOLDERS": {
+    "FIRST_NAME": "e.g Ahmed",
+    "LAST_NAME": "e.g Mohamed",
+    "PHONE_NUMBER": "+966 (000) 000-0000",
+    "USERNAME": "e.g Ahmed",
+    "EMAIL": "e.g Ahmed@gmail.com",
+    "PASSWORD": "Enter password",
+    "CONFIRM_PASSWORD": "Enter password again"
+  },
+  "SOURCE": {
+    "ALDREES_WEBSITE": "ALDREES WEBSITE",
+    "NEWSPAPER": "NEWSPAPER",
+    "SOCIAL_MEDIA": "SOCIAL MEDIA",
+    "TELEVISION": "TELEVISION",
+    "INTERNET": "INTERNET",
+    "RADIO": "RADIO",
+    "OTHER": "OTHER"
+  },
+  "VALIDATION": {
+    "REQUIRED": "{{field}} is required",
+    "ACCEPT_TERMS": "You must accept the terms and conditions",
+    "MIN_LENGTH": "{{field}} must be at least {{length}} characters",
+    "MAX_LENGTH": "{{field}} must not exceed {{length}} characters",
+    "PHONE_PATTERN": "Phone number must be 9 digits",
+    "NAME_PATTERN": "Name can only contain letters and spaces",
+    "INVALID_FORMAT": "Invalid format",
+    "EMAIL_INVALID": "Please enter a valid email address",
+    "USERNAME_PATTERN": "Username can only contain letters, numbers, and underscores",
+    "PASSWORD_MIN_LENGTH": "Password must be at least {{length}} characters",
+    "PASSWORD_PATTERN": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*)",
+    "PASSWORD_MISMATCH": "Passwords do not match"
+  },
+  "VERIFY_CODE": {
+    "TITLE": "Verification Code",
+    "SUBTITLE": "We've sent a 4-digit code to your phone number ending in 0115. Please enter it below.",
+    "DIDNT_RECEIVE": "Didn't receive code?",
+    "RESEND_CODE": "Resend Code",
+    "OTP_SENT_SUCCESS": "OTP sent successfully",
+    "OTP_SEND_FAILED": "Failed to send OTP, please try again",
+    "MAX_ATTEMPTS_REACHED": "Maximum attempts reached, please request a new OTP",
+    "ACCOUNT_VERIFIED": "Account verified successfully!",
+    "OTP_INCORRECT": "OTP is incorrect. Remaining attempts: {{remaining}}",
+    "VERIFICATION_ERROR": "An error occurred while verifying the OTP, please try again",
+    "ENTER_4_DIGIT_OTP": "Please enter the 4 digit OTP",
+    "ENTER_CORRECT_OTP": "Please enter the correct OTP"
+  },
+  "COMPANY_REGISTRATION": {
+    "TITLE": "Company Registration",
+    "SUBTITLE": "Create your company account to access Waie services"
+  },
+  "COMPANY_TYPE": {
+    "PRIVATE": "Private",
+    "GOVERNMENT": "Government"
+  },
+  "FIELDS": {
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "PHONE_NUMBER": "Phone Number",
+    "TERMS_CONDITIONS": "Terms and Conditions",
+    "USERNAME": "Username",
     "EMAIL": "Email",
     "PASSWORD": "Password",
     "CONFIRM_PASSWORD": "Confirm Password",
-    "FORGOT_PASSWORD": "Forgot Password?",
-    "REMEMBER_ME": "Remember Me"
+    "COMPANY_TYPE": "Company Type",
+    "COMPANY_NAME": "Company Name"
+  },
+  "PLACEHOLDERS": {
+    "FIRST_NAME": "e.g Ahmed",
+    "LAST_NAME": "e.g Mohamed",
+    "PHONE_NUMBER": "+966 (000) 000-0000",
+    "USERNAME": "e.g Ahmed",
+    "EMAIL": "e.g Ahmed@gmail.com",
+    "PASSWORD": "Enter password",
+    "CONFIRM_PASSWORD": "Enter password again",
+    "COMPANY_NAME": "e.g. Ahmed Company",
+    "COMPANY_EMAIL": "e.g. contact@company.com"
   },
   "VALIDATION": {
-    "REQUIRED": "This field is required",
-    "EMAIL_INVALID": "Invalid email address",
-    "PASSWORD_MIN": "Password must be at least 8 characters",
-    "PASSWORD_MATCH": "Passwords do not match"
+    "REQUIRED": "{{field}} is required",
+    "ACCEPT_TERMS": "You must accept the terms and conditions",
+    "MIN_LENGTH": "{{field}} must be at least {{length}} characters",
+    "MAX_LENGTH": "{{field}} must not exceed {{length}} characters",
+    "PHONE_PATTERN": "Phone number must be 9 digits",
+    "NAME_PATTERN": "Name can only contain letters and spaces",
+    "INVALID_FORMAT": "Invalid format",
+    "EMAIL_INVALID": "Please enter a valid email address",
+    "USERNAME_PATTERN": "Username can only contain letters, numbers, and underscores",
+    "PASSWORD_MIN_LENGTH": "Password must be at least {{length}} characters",
+    "PASSWORD_PATTERN": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character (!@#$%^&*)",
+    "PASSWORD_MISMATCH": "Passwords do not match",
+    "COMPANY_NAME_PATTERN": "Company name contains invalid characters"
+  },
+  "BUTTONS": {
+    "CONTINUE": "Continue",
+    "PREVIOUS": "Previous",
+    "CREATE_ACCOUNT": "Create Account",
+    "VERIFY": "Verify"
   }
-} 
+}

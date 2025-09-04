@@ -1,6 +1,6 @@
 <div>
     <div class="flex items-center justify-cente mb-6">
-        <span class="p-4 bg-white text-primary-700 rounded-lg border border-gray-200">
+        <span class="p-4 bg-white text-[#6366F1] rounded-lg border border-gray-200">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z"
@@ -13,10 +13,10 @@
     </div>
     <div class="flex flex-col space-y-4 mb-8">
         <div class="font-semibold text-3xl">
-            <p>Verification Code</p>
+            <p>{{ 'VERIFY_CODE.TITLE' | translate }}</p>
         </div>
         <div class="text-gray-500 mb-8">
-            <p>We’ve sent a 4-digit code to your phone number ending in 0115. Please enter it below.</p>
+            <p>{{ 'VERIFY_CODE.SUBTITLE' | translate }}</p>
         </div>
     </div>
 
@@ -69,35 +69,38 @@
     <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
         <lib-otp-field [field]="otpField" [control]="otpControl" [showLabels]="true"
             [showValidationMessages]="true"></lib-otp-field>
-            <div class="flex justify-between items-center space-y-4">
+        <div class="flex justify-between items-center py-4">
+            <span>
                 <app-countdown class="text-green-500" [countdown]="5 * 60"></app-countdown>
-                <span class="text-gray-500">Didn't receive code? <a
-                        class="text-indigo-600 hover:text-indigo-500 font-semibold" (click)="resendOtp()">Resend Code</a></span>
-            </div>
+            </span>
+            <span class="text-gray-500 m-0">{{ 'VERIFY_CODE.DIDNT_RECEIVE' | translate }} <a
+                    class="text-indigo-600 hover:text-indigo-500 font-semibold" (click)="resendOtp()">{{ 'VERIFY_CODE.RESEND_CODE' | translate }}</a></span>
+        </div>
         <!-- Manual Verify Button (fallback) -->
         <div class="flex flex-col my-8">
-        <button type="button" (click)="onVerifyClick()"
-            [disabled]="isLoading || !otpControl.value || otpControl.value.length !== 4"
-            class="w-full bg-primary-700 text-white font-semibold py-3 rounded-lg hover:bg-primary-700 transition duration-300">
-            Verify
-        </button>
-        <div class="mt-6">
-            <a class="text-gray-600 hover:text-gray-800 font-semibold flex items-center justify-center" (click)="onPreviousStep()">
-                <span class="material-icons mr-1">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 19L8 12L15 5" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
+            <button type="button" (click)="onVerifyClick()"
+                [disabled]="isLoading || !otpControl.value || otpControl.value.length !== 4"
+                class="w-full bg-primary-800 text-white font-semibold py-3 rounded-lg hover:bg-primary-900 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                @if (isLoading) {
+                <span class="flex items-center justify-center">
+                    <span class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
                 </span>
-
-                Previous
-            </a>
-        </div>
+                }@else {
+                <span>{{ 'BUTTONS.VERIFY' | translate }}</span>
+                }
+            </button>
+            <div class="mt-6">
+                <a class="text-primary-700 cursor-pointer hover:text-primary-800 font-semibold flex items-center justify-center"
+                    (click)="onPreviousStep()">
+                    <span class=" mx-2 rtl:rotate-180">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    {{ 'BUTTONS.PREVIOUS' | translate }}
+                </a>
+            </div>
         </div>
     </form>
-
-    <!-- Additional Info -->
-    <div class="text-center text-sm text-gray-500">
-        <p>لم تستلم الرمز؟ تحقق من رسائل SMS أو البريد الإلكتروني</p>
-    </div>
 </div>
