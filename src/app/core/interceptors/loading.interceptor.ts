@@ -47,11 +47,11 @@ export const loadingInterceptor: HttpInterceptorFn = (
     tap({
       next: (event) => {
         // Optional: Log successful requests
-        console.log('Request successful:', request.url);
+        // console.log('Request successful:', request.url);
       },
       error: (error) => {
         // Optional: Log failed requests
-        console.error('Request failed:', request.url, error);
+        // console.error('Request failed:', request.url, error);
       }
     }),
     finalize(() => {

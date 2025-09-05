@@ -320,6 +320,9 @@ module.exports = {
           gray: "#3741514d"
         }
         
+      },
+      fontFamily: {
+        sans: ['IBM Plex Sans Arabic', 'sans-serif'],
       }
     }
   },

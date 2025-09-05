@@ -1,7 +1,18 @@
+@use "./styles/main";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* RTL (عربي) */
+[dir="rtl"] {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+}
+
+/* LTR (إنجليزي) */
+[dir="ltr"] {
+  font-family: 'Inter', sans-serif;
+}
 
 @layer components {
   .heading-1 {
