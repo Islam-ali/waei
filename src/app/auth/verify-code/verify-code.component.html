@@ -1,28 +1,27 @@
-<div class="max-w-md mx-auto">
-    <div class="flex items-center mb-4">
-        <span class="p-2 bg-white text-[#6366F1] rounded-lg border border-gray-200">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12 18H12.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
+<div class="flex items-center mb-4">
+    <span class="p-2 bg-white text-[#6366F1] rounded-lg border border-gray-200">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 18H12.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
 
-        </span>
+    </span>
+</div>
+<div class="flex flex-col mb-4">
+    <div class="text-2xl font-semibold text-gray-800 mb-2">
+        <p>{{ 'VERIFY_CODE.TITLE' | translate }}</p>
     </div>
-    <div class="flex flex-col mb-4">
-        <div class="text-2xl font-semibold text-gray-800 mb-2">
-            <p>{{ 'VERIFY_CODE.TITLE' | translate }}</p>
-        </div>
-        <div class="text-gray-500 mb-6 text-md">
-            <p>{{ 'VERIFY_CODE.SUBTITLE' | translate }}</p>
-        </div>
+    <div class="text-gray-500 mb-6 text-md">
+        <p>{{ 'VERIFY_CODE.SUBTITLE' | translate }}</p>
     </div>
+</div>
 
-    <!-- Success Message -->
-    @if (successMessage) {
-    <!-- <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+<!-- Success Message -->
+@if (successMessage) {
+<!-- <div class="bg-green-50 border border-green-200 rounded-lg p-4">
         <div class="flex items-center justify-center">
             <div class="ms-3">
                 <p class="text-sm font-medium text-green-800">{{ successMessage }}</p>
@@ -36,28 +35,28 @@
             </div>
         </div>
     </div> -->
-    }
+}
 
-    <!-- Error Message -->
-    @if (isError && errorMessage) {
-    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-        <div class="flex items-center">
-            <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                        clip-rule="evenodd" />
-                </svg>
-            </div>
-            <div class="mr-3">
-                <p class="text-sm font-medium text-red-800">{{ errorMessage }}</p>
-            </div>
+<!-- Error Message -->
+@if (isError && errorMessage) {
+<div class="bg-red-50 border border-red-200 rounded-lg p-4">
+    <div class="flex items-center">
+        <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div class="mr-3">
+            <p class="text-sm font-medium text-red-800">{{ errorMessage }}</p>
         </div>
     </div>
-    }
+</div>
+}
 
-    <!-- Attempts Counter -->
-    <!-- @if (attempts > 0) {
+<!-- Attempts Counter -->
+<!-- @if (attempts > 0) {
                 <div class="text-center">
                     <p class="text-sm text-gray-600">
                         المحاولات المستخدمة: <span class="font-medium text-primary-600">{{ attempts }}</span> من <span class="font-medium text-gray-600">{{ maxAttempts }}</span>
@@ -65,42 +64,40 @@
                 </div>
             } -->
 
-    <!-- Dynamic OTP Field -->
-    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
-        <lib-otp-field [field]="otpField" [control]="otpControl" [showLabels]="true"
-            [showValidationMessages]="true"></lib-otp-field>
-        <div class="flex justify-between items-center py-4">
-            <span>
-                <app-countdown class="text-green-500 text-xl" [countdown]="5 * 60"></app-countdown>
+<!-- Dynamic OTP Field -->
+<form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+    <lib-otp-field [field]="otpField" [control]="otpControl" [showLabels]="true"
+        [showValidationMessages]="true"></lib-otp-field>
+    <div class="flex justify-between items-center py-4">
+        <span>
+            <app-countdown class="text-green-500 text-xl" [countdown]="5 * 60"></app-countdown>
+        </span>
+        <span class="text-gray-500 m-0 text-sm">{{ 'VERIFY_CODE.DIDNT_RECEIVE' | translate }} <a class="text-indigo-300"
+                (click)="resendOtp()">{{ 'VERIFY_CODE.RESEND_CODE' | translate }}</a></span>
+    </div>
+    <!-- Manual Verify Button (fallback) -->
+    <div class="flex flex-col my-8">
+        <button type="button" (click)="onVerifyClick()"
+            [disabled]="isLoading || !otpControl.value || otpControl.value.length !== 4" class="btn-primary">
+            @if (isLoading) {
+            <span class="flex items-center justify-center">
+                <span class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
             </span>
-            <span class="text-gray-500 m-0 text-sm">{{ 'VERIFY_CODE.DIDNT_RECEIVE' | translate }} <a class="text-indigo-300"
-                    (click)="resendOtp()">{{ 'VERIFY_CODE.RESEND_CODE' | translate }}</a></span>
-        </div>
-        <!-- Manual Verify Button (fallback) -->
-        <div class="flex flex-col my-8">
-            <button type="button" (click)="onVerifyClick()"
-                [disabled]="isLoading || !otpControl.value || otpControl.value.length !== 4"
-                class="btn-primary">
-                @if (isLoading) {
-                <span class="flex items-center justify-center">
-                    <span class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
+            }@else {
+            <span>{{ 'BUTTONS.VERIFY' | translate }}</span>
+            }
+        </button>
+        <div class="mt-6">
+            <a class="text-primary-700 cursor-pointer hover:text-primary-800 font-semibold flex items-center justify-center"
+                (click)="onPreviousStep()">
+                <span class=" mx-2 rtl:rotate-180">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
                 </span>
-                }@else {
-                <span>{{ 'BUTTONS.VERIFY' | translate }}</span>
-                }
-            </button>
-            <div class="mt-6">
-                <a class="text-primary-700 cursor-pointer hover:text-primary-800 font-semibold flex items-center justify-center"
-                    (click)="onPreviousStep()">
-                    <span class=" mx-2 rtl:rotate-180">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </span>
-                    {{ 'BUTTONS.PREVIOUS' | translate }}
-                </a>
-            </div>
+                {{ 'BUTTONS.PREVIOUS' | translate }}
+            </a>
         </div>
-    </form>
-</div>
+    </div>
+</form>

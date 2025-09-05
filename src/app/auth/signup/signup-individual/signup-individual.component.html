@@ -1,20 +1,20 @@
-<div class="min-h-[calc(100vh-7.5rem)] flex flex-col">
-  <div class="flex-1 flex items-center">
+<div class="min-h-[calc(100vh-7.5rem)] flex flex-col w-full">
+  <div class="flex-1 flex items-center w-full">
     @switch (currentStep) {
     @case (Step.YourDetails) {
-    <app-your-details (nextStep)="onNextStep()"></app-your-details>
+    <app-your-details class="w-full" (nextStep)="onNextStep()"></app-your-details>
     }
     @case (Step.VerifyCode) {
-    <app-verify-code (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
+    <app-verify-code class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
     }
     @case (Step.UserNameAndEmail) {
-    <app-username-and-email (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-username-and-email>
+    <app-username-and-email class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-username-and-email>
     }
     @case (Step.SelectSource) {
-    <app-select-source (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-select-source>
+    <app-select-source class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-select-source>
     }
     @case (Step.CreatePassword) {
-    <app-create-password (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
+    <app-create-password class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
     }
     }
   </div>

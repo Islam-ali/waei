@@ -2,13 +2,13 @@
   <div class="flex-1 flex items-center">
     @switch (currentStep) {
     @case (Step.CompanyRegistration) {
-    <app-company-registration (nextStep)="onNextStep()"></app-company-registration>
+    <app-company-registration class="w-full" (nextStep)="onNextStep()"></app-company-registration>
     }
     @case (Step.VerifyCode) {
-    <app-verify-code (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
+    <app-verify-code class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
     }
     @case (Step.CreatePassword) {
-    <app-create-password-company (nextStep)="onNextStep()"
+    <app-create-password-company class="w-full" (nextStep)="onNextStep()"
       (previousStep)="onPreviousStep()"></app-create-password-company>
     }
     }
