@@ -1,5 +1,5 @@
-<div class="flex items-center mb-6">
-    <span class="p-4 bg-white rounded-lg border border-gray-200">
+<div class="flex items-center mb-4">
+    <span class="p-2 bg-white rounded-lg border border-gray-200">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M22 7L13.03 12.7C12.7213 12.8934 12.3643 12.996 12 12.996C11.6357 12.996 11.2787 12.8934 10.97 12.7L2 7" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -7,18 +7,18 @@
             
     </span>
 </div>
-<h1 class="text-3xl font-bold text-gray-800 mb-2">{{ 'USERNAME_EMAIL.TITLE' | translate }}</h1>
-<p class="text-gray-500 mb-8">{{ 'USERNAME_EMAIL.SUBTITLE' | translate }}</p>
+<h1 class="text-2xl font-semibold text-gray-800 mb-2">{{ 'USERNAME_EMAIL.TITLE' | translate }}</h1>
+<p class="text-gray-500 mb-6 text-md">{{ 'USERNAME_EMAIL.SUBTITLE' | translate }}</p>
 
 <form [formGroup]="userForm" (ngSubmit)="onNextStep()">
     <!-- Username -->
     <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-1" for="username">{{ 'FIELDS.USERNAME' | translate }}</label>
+        <label class="block text-sm font-semibold text-gray-700 mb-1" for="username">{{ 'FIELDS.USERNAME' | translate }}</label>
         <input
             formControlName="username"
-            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:boredr focus:border-primary-500"
             [ngClass]="{
-                'border-gray-300': !isFieldInvalid('username'),
+                'border-gray-200': !isFieldInvalid('username'),
                 'border-red-500': isFieldInvalid('username')
             }"
             id="username" 
@@ -32,14 +32,14 @@
     <!-- Email -->
     <div class="mb-4">
         <label class="mb-1 flex items-center justify-between" for="email">
-            <span class="text-sm font-medium text-gray-700">{{ 'FIELDS.EMAIL' | translate }}</span>
+            <span class="text-sm font-semibold text-gray-700">{{ 'FIELDS.EMAIL' | translate }}</span>
             <span class="text-gray-400 text-sm">{{ 'USERNAME_EMAIL.OPTIONAL' | translate }}</span>
         </label>
         <input
             formControlName="email"
-            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+            class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:boredr focus:border-primary-500"
             [ngClass]="{
-                'border-gray-300': !isFieldInvalid('email'),
+                'border-gray-200': !isFieldInvalid('email'),
                 'border-red-500': isFieldInvalid('email')
             }"
             id="email" 
@@ -52,7 +52,7 @@
 
     <!-- Submit Button -->
     <button
-        class="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        class="btn-primary"
         type="submit"
         [disabled]="userForm.invalid">
         {{ 'BUTTONS.CONTINUE' | translate }}

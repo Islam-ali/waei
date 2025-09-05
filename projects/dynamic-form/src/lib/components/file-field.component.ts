@@ -65,7 +65,7 @@ interface UploadStats {
         <div class="flex items-center justify-center w-full max-w-6xl mx-auto mb-6">
           <label
             [for]="'dropzone-file-' + field.name"
-            class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
+            class="flex flex-col items-center justify-center w-full border-2 border-gray-200 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
             [class.h-28]="!field.multiple || selectedFiles.length === 0"
             [class.h-40]="field.multiple && selectedFiles.length > 0"
             [class.border-blue-400]="isUploading"
@@ -332,7 +332,7 @@ interface UploadStats {
                 
                 @if (field.description) {
                   <div class="mt-2 w-full">
-                    <textarea class="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent" [(ngModel)]="file.description" rows="2" placeholder="Add description..."></textarea>
+                    <textarea class="w-full px-2 py-1 text-sm border border-gray-200 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent" [(ngModel)]="file.description" rows="2" placeholder="Add description..."></textarea>
                   </div>
                 }
                 

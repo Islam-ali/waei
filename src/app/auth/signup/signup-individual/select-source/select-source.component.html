@@ -1,5 +1,5 @@
-<div class="flex items-center mb-6">
-    <span class="p-4 bg-white rounded-lg border border-gray-200">
+<div class="flex items-center mb-4">
+    <span class="p-2 bg-white rounded-lg border border-gray-200">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 16V12" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -8,23 +8,23 @@
             
     </span>
 </div>
-<h1 class="text-3xl font-bold text-gray-800 mb-2">{{ 'SELECT_SOURCE.TITLE' | translate }}</h1>
-<p class="text-gray-500 mb-8">{{ 'SELECT_SOURCE.SUBTITLE' | translate }}</p>
+<h1 class="text-2xl font-semibold text-gray-800 mb-2">{{ 'SELECT_SOURCE.TITLE' | translate }}</h1>
+<p class="text-gray-500 mb-6 text-md">{{ 'SELECT_SOURCE.SUBTITLE' | translate }}</p>
 <form>
-    <div class="flex flex-wrap gap-2 mb-8">
+    <div class="flex flex-wrap gap-2 mb-4">
         @for (source of listOfSources; let i = $index; track source.value) {
         <button type="button"
-            class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none text-xs"
-            [ngClass]="{'border-primary-600 text-primary-600': source.selected}"
+            class="px-4 py-2 border border-gray-200 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none text-xs"
+            [ngClass]="{'border-sky-600 text-sky-600': source.selected}"
             (click)="onSourceSelect(i)">{{ source.translationKey | translate }}</button>
 
         }
     </div>
     <button
-        class="w-full bg-primary-700 text-white font-bold py-3 px-4 rounded-lg hover:bg-primary-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50"
+        class="btn-primary"
         type="button" (click)="onNextStep()">{{ 'BUTTONS.CONTINUE' | translate }}
     </button>
-    <div class="mt-6">
+    <div class="mt-4">
         <a class="text-primary-700 cursor-pointer hover:text-primary-800 font-semibold flex items-center justify-center"
             (click)="onPreviousStep()">
             <span class=" mx-2 rtl:rotate-180">

@@ -1,115 +1,56 @@
 <div class="bg-white">
     <div class="flex min-h-screen p-2">
-        <div class="w-full h-[inherit] lg:w-7/12 xl:w-8/12 flex flex-col justify-betwee">
-                <header class="flex justify-between items-center p-2 mb-16 h-10">
-                    <!-- Logo Container -->
-                    <div class="flex gap-2 items-center">
-                        <div class="h-[38px] overflow-hidden ">
-                            <img src="assets/images/base/Icon-container.svg" alt="icon"
-                                class="w-full h-full object-contain">
-                        </div>
-                        <div class="h-[38px] overflow-hidden ">
-                            <img src="assets/images/base/Logo.png" alt="logo" class="w-full h-full object-contain">
-                        </div>
+        <div class="w-full h-[inherit] lg:w-7/12 xl:w-8/12 flex flex-col">
+            <header class="flex justify-between items-center p-2 mb-8 h-10">
+                <!-- Logo Container -->
+                <div class="flex gap-2 items-center">
+                    <div class=" overflow-hidden ">
+                        <img src="assets/images/base/Logo.png" alt="logo" class="w-full h-full object-contain">
                     </div>
-
-                    <!-- Language Selector -->
-                    <nav class="flex items-center">
-                        <app-language-switcher></app-language-switcher> 
-                    </nav>
-                </header>
-                <div class="form-container mx-auto flex-1">
-                    <router-outlet></router-outlet>
+                    <div class=" overflow-hidden ">
+                        <img src="assets/images/base/Icon-container.svg" alt="icon"
+                            class="w-full h-full object-contain">
+                    </div>
                 </div>
+
+                <!-- Language Selector -->
+                <nav class="flex items-center">
+                    <app-language-switcher></app-language-switcher>
+                </nav>
+            </header>
+            <div class="max-w-[400px] mx-auto flex-1">
+                <router-outlet></router-outlet>
+            </div>
         </div>
         <div
-            class="w-full lg:w-5/12 xl:w-4/12 hidden lg:flex bg-gray-100 items-center justify-center relative overflow-hidden rounded-xl">
+            class="w-full lg:w-5/12 xl:w-4/12 hidden lg:flex bg-gray-100 items-end pb-6 justify-center relative overflow-hidden rounded-xl">
             <img alt="Gas station canopy with Arabic text" class="absolute top-0 left-0 w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp3T7xkUPYHVnjStNYcR9c8YsGh0mhR1ZvnpSFA7joI19ySRXKUj5ggWR4BG1TQZLvcyAKFpOf9Bthhzys5LLutEHgR7YQefXlzlp96jszO8NzCthANPYAPu5p6LKRtYvO068WxAN4ivySaq106ZOHAdw_H-eveeImV85Xuqq4aGo8bIg0ndCzVmr1icdwVDXbgv7e0zsPYrt2peGsrtgPhAIjfireco0Lbz3Id8LJlQGC2-JZeSuh9HnkpYSckUsC7BFFaSgDKVY" />
-
-            <!-- Radio inputs for carousel control -->
-            <input type="radio" name="testimonial-slider" id="testimonial-1" checked class="hidden">
-            <input type="radio" name="testimonial-slider" id="testimonial-2" class="hidden">
-            <input type="radio" name="testimonial-slider" id="testimonial-3" class="hidden">
-
-            <!-- Navigation buttons -->
-            <!-- <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 p-2 rounded-full shadow-md hover:bg-white/70 transition-colors" (click)="onPreviousClick()">
-                <span class="material-icons text-gray-800">chevron_left</span>
-            </button>
-            <button class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 p-2 rounded-full shadow-md hover:bg-white/70 transition-colors" (click)="onNextClick()">
-                <span class="material-icons text-gray-800">chevron_right</span>
-            </button> -->
-
+                [src]="'assets/images/base/image.png'" />
             <!-- Carousel container -->
-            <div class="w-full h-full flex items-end pb-16 justify-center relative" (mouseenter)="pauseAutoplay()"
-                (mouseleave)="resumeAutoplay()">
-                <div class="relative w-full max-w-[280px] h-80">
-                    <!-- Testimonial 1 -->
-                    <div class="absolute w-full  h-full transition-all duration-500 ease-in-out cursor-pointer"
-                        (click)="showTestimonial(1)" id="testimonial-card-1">
-                        <div
-                            class="bg-white backdrop-blur-sm p-6 rounded-2xl shadow-lg h-full flex flex-col justify-center">
-                            <p class="text-base font-medium text-gray-800 leading-relaxed">"Ahmed Al-Qahtani's
-                                testimony: A game-changer for fleet management. WAIE's system is efficient and
-                                user-friendly."</p>
-                            <div class="flex items-center mt-4">
-                                <img alt="Portrait of Ahmed Al-Qahtani" class="h-12 w-12 rounded-full mr-4"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3I0N_Q5OgZvfECWqGDzeOX-CFflelC-f6EViEVhmizHFaQMS0LGa2Adv5l4calhyI6nb3sitdPJeEsImvDvZ2hJ5o32UUIJP93yJOIbvH0kCzCR3Q0grzHnHHWZC_iav5sVNW5i78d5U_y89qbcjzj5lPY1-Nve20_HNnPowscu8OQaC900-tP6ko0vS8F_G_hY7R8PcW73Gpf05csA0XBZkHgE6KxoKvMXZH0vEyDuoJ0QF3ps-jzMh-rirARCkUvXwPA7_o-wM" />
-                                <div>
-                                    <p class="font-bold text-gray-900">Ahmed Al-Qahtani</p>
-                                    <p class="text-sm text-gray-500">Fleet Manager, Riyadh</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="absolute w-full  h-full transition-all duration-500 ease-in-out cursor-pointer"
-                        (click)="showTestimonial(2)" id="testimonial-card-2">
-                        <div
-                            class="bg-white backdrop-blur-sm p-8 rounded-2xl shadow-lg h-full flex flex-col justify-center">
-                            <p class="text-xl font-medium text-gray-800 leading-relaxed">"The best fuel management
-                                service I've ever used. Highly recommended for any business with a fleet."</p>
-                            <div class="flex items-center mt-4">
-                                <img alt="Portrait of Khalid Al-Fahad" class="h-16 w-16 rounded-full mr-4"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3I0N_Q5OgZvfECWqGDzeOX-CFflelC-f6EViEVhmizHFaQMS0LGa2Adv5l4calhyI6nb3sitdPJeEsImvDvZ2hJ5o32UUIJP93yJOIbvH0kCzCR3Q0grzHnHHWZC_iav5sVNW5i78d5U_y89qbcjzj5lPY1-Nve20_HNnPowscu8OQaC900-tP6ko0vS8F_G_hY7R8PcW73Gpf05csA0XBZkHgE6KxoKvMXZH0vEyDuoJ0QF3ps-jzMh-rirARCkUvXwPA7_o-wM" />
-                                <div>
-                                    <p class="font-bold text-gray-900 text-lg">Khalid Al-Fahad</p>
-                                    <p class="text-base text-gray-500">Logistics Manager, Jeddah</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            <div  class="relative w-full max-w-4xl mx-auto overflow-hidden">
+                <div #slider class="flex transition-transform duration-700 ease-in-out">
                     <!-- Testimonial 3 -->
-                    <div class="absolute w-full  h-full transition-all duration-500 ease-in-out cursor-pointer"
-                        (click)="showTestimonial(3)" id="testimonial-card-3">
-                        <div
-                            class="bg-white backdrop-blur-sm p-6 rounded-2xl shadow-lg h-full flex flex-col justify-center">
-                            <p class="text-base font-medium text-gray-800 leading-relaxed">"Using WAIE made fueling and
+                    @for (testimonial of [1, 2, 3 ,4, 5 ,6, 7, 8, 9, 10]; track testimonial) {
+                    <div class="card-testimonial" [id]="`testimonial-${testimonial}`">
+                        <div class="bg-white p-6 h-full flex flex-col justify-between">
+                            <p class="flex-1 text-2xl font-semibold text-blue-400 leading-relaxed">"Using WAIE made
+                                fueling
+                                and
                                 managing my company fleet so simple. I can track every transaction."</p>
-                            <div class="flex items-center mt-4">
-                                <img alt="Portrait of Mohamed Adel Elzohiry" class="h-12 w-12 rounded-full mr-4"
+                            <div class="flex items-center mt-4 h-12">
+                                <img alt="Portrait of Mohamed Adel Elzohiry" class="h-12 w-12 rounded-lg mr-4"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3I0N_Q5OgZvfECWqGDzeOX-CFflelC-f6EViEVhmizHFaQMS0LGa2Adv5l4calhyI6nb3sitdPJeEsImvDvZ2hJ5o32UUIJP93yJOIbvH0kCzCR3Q0grzHnHHWZC_iav5sVNW5i78d5U_y89qbcjzj5lPY1-Nve20_HNnPowscu8OQaC900-tP6ko0vS8F_G_hY7R8PcW73Gpf05csA0XBZkHgE6KxoKvMXZH0vEyDuoJ0QF3ps-jzMh-rirARCkUvXwPA7_o-wM" />
                                 <div>
-                                    <p class="font-bold text-gray-900">Mohamed Adel Elzohiry</p>
+                                    <p class="font-bold text-gray-900 text-sm">Mohamed Adel Elzohiry</p>
                                     <p class="text-sm text-gray-500">Fleet Manager, Riyadh</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    }
                 </div>
             </div>
 
-            <!-- Progress indicators -->
-            <!-- <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-                <div class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer hover:bg-white"
-                    id="indicator-1" (click)="showTestimonial(1)"></div>
-                <div class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer hover:bg-white"
-                    id="indicator-2" (click)="showTestimonial(2)"></div>
-                <div class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer hover:bg-white"
-                    id="indicator-3" (click)="showTestimonial(3)"></div>
-            </div> -->
         </div>
     </div>
 </div>

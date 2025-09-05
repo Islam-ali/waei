@@ -315,7 +315,7 @@ import { Product } from '../../core/models/product.model';
           type="text"
           [formControl]="searchControl"
           placeholder="البحث في المنتجات..."
-          class="w-full px-3 py-2 border border-gray-300 rounded-md"
+          class="w-full px-3 py-2 border border-gray-200 rounded-md"
         />
       </div>
 

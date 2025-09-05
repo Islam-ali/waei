@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, inject, PLATFORM_ID, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, inject, PLATFORM_ID, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LanguageSwitcherComponent } from "../../shared/components";
 
@@ -13,6 +13,33 @@ import { LanguageSwitcherComponent } from "../../shared/components";
 
 export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
   platformId = inject(PLATFORM_ID);
+  @ViewChild('slider', { static: true }) sliderRef!: ElementRef<HTMLDivElement>;
+  index = 0;
+  intervalId: any;
+
+
+  updateSlider() {
+    const slider = this.sliderRef.nativeElement;
+    const cards = Array.from(slider.children) as HTMLElement[];
+
+    cards.forEach(c => c.classList.remove('active'));
+    cards[this.index].classList.add('active');
+
+    const cardWidth = cards[0].offsetWidth + 16;
+    const offset =
+      -this.index * cardWidth +
+      (slider.parentElement!.offsetWidth / 2 - cardWidth / 2);
+
+    slider.style.transform = `translateX(${offset}px)`;
+  }
+
+  nextSlide() {
+    const slider = this.sliderRef.nativeElement;
+    const cards = Array.from(slider.children);
+    this.index = (this.index + 1) % cards.length;
+    this.updateSlider();
+  }
+
   ngOnInit() {
     // Only initialize if we're in browser
     if (isPlatformBrowser(this.platformId)) {
@@ -27,7 +54,8 @@ export class SignupComponent implements OnInit, OnDestroy, AfterViewInit {
       // Use a longer timeout to ensure DOM is fully rendered
       setTimeout(() => {
         try {
-          this.initializeTestimonialCarousel();
+          this.updateSlider();
+          this.intervalId = setInterval(() => this.nextSlide(), 2000);
         } catch (error) {
           console.warn('Failed to initialize carousel:', error);
         }

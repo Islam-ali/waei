@@ -1,32 +1,33 @@
 <div class="bg-white min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="flex justify-between items-center p-6">
+    <header class="flex justify-between items-center p-2">
         <!-- Logo Container -->
         <div class="flex gap-2 items-center">
-            <div class="h-[38px] overflow-hidden ">
-                <img src="assets/images/base/Icon-container.svg" alt="icon" class="w-full h-full object-contain">
-            </div>
-            <div class="h-[38px] overflow-hidden ">
+            <div class="overflow-hidden ">
                 <img src="assets/images/base/Logo.png" alt="logo" class="w-full h-full object-contain">
+            </div>
+            <div class="overflow-hidden ">
+                <img src="assets/images/base/Icon-container.svg" alt="icon" class="w-full h-full object-contain">
             </div>
         </div>
 
         <!-- Language Selector -->
         <nav class="flex h-[38px] items-center">
-            <app-language-switcher></app-language-switcher> 
+            <app-language-switcher></app-language-switcher>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1 flex items-center justify-center p-8">
-        <section class="bg-white flex flex-col gap-10 items-center justify-center p-8 rounded-2xl w-full max-w-[554px] border border-gray-200 shadow-sm">
+    <main class="flex flex-1 items-center justify-center p-2">
+        <section
+            class="bg-white-100% flex flex-col h-max gap-10 items-center justify-center p-8 rounded-2xl w-full max-w-[480px] border border-gray-200 shadow-sm">
             <!-- Welcome Section -->
-            <div class="flex flex-col gap-6 items-center w-full">
+            <div class="flex flex-col gap-4 items-center w-full">
                 <div class="flex flex-col gap-2 items-center text-center w-full">
-                    <h1 class="font-semibold text-4xl text-gray-800 tracking-[0.18px] w-full leading-normal">
+                    <h1 class="font-semibold text-2xl 2xl:text-3xl text-gray-800 tracking-[0.18px] w-full leading-normal">
                         {{ 'ACCOUNT_TYPE.TITLE' | translate }}
                     </h1>
-                    <p class="font-normal text-sm text-gray-500 tracking-[0.08px] w-full leading-6">
+                    <p class="font-normal text-sm 2xl:text-base text-gray-500 tracking-[0.08px] w-full leading-6">
                         {{ 'ACCOUNT_TYPE.SUBTITLE' | translate }}
                     </p>
                 </div>
@@ -35,45 +36,52 @@
             <!-- Account Type Selection -->
             <section class="flex gap-4 items-stretch w-full">
                 <!-- Individual Option -->
-                <div (click)="onSelectAccountType('individual')" class="flex-1 bg-slate-50 rounded-2xl px-4 py-8 md:px-8 md:py-16 border border-transparent text-gray-600  hover:text-primary-700 hover:bg-primary-700/5 hover:border-primary-700 transition-colors cursor-pointer"
-                [ngClass]="{'!border-primary-700 !text-primary-700 !bg-primary-700/5': selectedAccountType === 'individual'}"
-                >
+                <div (click)="onSelectAccountType('individual')"
+                    class="flex-1 bg-slate-50 rounded-2xl px-2 py-6 2xl:px-8 2xl:py-16 border border-transparent text-gray-400  hover:text-primary-400 hover:bg-primary-400/5 hover:border-primary-400 transition-colors cursor-pointer"
+                    [ngClass]="{'!border-primary-400 !text-primary-400 !bg-primary-400/5': selectedAccountType === 'individual'}">
                     <div class="flex flex-col items-center justify-center h-full gap-4">
-                        <div class="w-[88px] h-[88px] flex items-center justify-center">
+                        <div
+                            class="min-w-[50px] min-h-[50px] w-[5vw] max-w-[88px] max-h-[88px]  flex items-center justify-center">
                             <svg class="w-full h-full" fill="none" viewBox="0 0 88 88">
                                 <g>
                                     <path
                                         d="M44 47.6667C54.1252 47.6667 62.3333 39.4586 62.3333 29.3333C62.3333 19.2081 54.1252 11 44 11C33.8748 11 25.6667 19.2081 25.6667 29.3333C25.6667 39.4586 33.8748 47.6667 44 47.6667Z"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M73.3333 77C73.3333 69.2203 70.2429 61.7593 64.7418 56.2582C59.2407 50.7571 51.7797 47.6667 44 47.6667C36.2203 47.6667 28.7593 50.7571 23.2582 56.2582C17.7571 61.7593 14.6667 69.2203 14.6667 77"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" />
                                 </g>
                             </svg>
                         </div>
-                        <h2 class="font-medium text-base text-center tracking-[0.08px] leading-6">
+                        <h2 class="font-medium text-sm text-center tracking-[0.08px] leading-6">
                             {{ 'ACCOUNT_TYPE.INDIVIDUAL' | translate }}
                         </h2>
                     </div>
                 </div>
 
                 <!-- Company Option -->
-                <div (click)="onSelectAccountType('company')" class="flex-1 bg-slate-50 rounded-2xl px-4 py-8 md:px-8 md:py-16 border  border-transparent text-gray-600  hover:text-primary-700  hover:bg-primary-700/5 hover:border-primary-700 transition-colors cursor-pointer"
-                [ngClass]="{'!border-primary-700 !text-primary-700 !bg-primary-700/5': selectedAccountType === 'company'}"
-                >
+                <div (click)="onSelectAccountType('company')" class="flex-1 bg-slate-50 rounded-2xl px-2 py-6 2xl:px-8 2xl:py-16 border  border-transparent text-gray-400  hover:text-primary-400 
+                     hover:bg-primary-400/5 hover:border-primary-400 transition-colors cursor-pointer"
+                    [ngClass]="{'!border-primary-400 !text-primary-400 !bg-primary-400/5': selectedAccountType === 'company'}">
                     <div class="flex flex-col items-center justify-center h-full gap-4">
-                        <div class="w-[88px] h-[88px] flex items-center justify-center">
+                        <div
+                            class="min-w-[50px] min-h-[50px] w-[5vw] max-w-[88px] max-h-[88px]  flex items-center justify-center">
                             <svg class="w-full h-full" fill="none" viewBox="0 0 88 88">
                                 <g>
                                     <path
                                         d="M22 80.6667V14.6667C22 12.7217 22.7726 10.8565 24.1479 9.48122C25.5232 8.10595 27.3884 7.33333 29.3333 7.33333H58.6667C60.6116 7.33333 62.4768 8.10595 63.8521 9.48122C65.2274 10.8565 66 12.7217 66 14.6667V80.6667H22Z"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M22 44H14.6667C12.7217 44 10.8565 44.7726 9.48122 46.1479C8.10595 47.5232 7.33333 49.3884 7.33333 51.3333V73.3333C7.33333 75.2783 8.10595 77.1435 9.48122 78.5188C10.8565 79.894 12.7217 80.6667 14.6667 80.6667H22"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" />
                                     <path
                                         d="M66 33H73.3333C75.2783 33 77.1435 33.7726 78.5188 35.1479C79.894 36.5232 80.6667 38.3884 80.6667 40.3333V73.3333C80.6667 75.2783 79.894 77.1435 78.5188 78.5188C77.1435 79.894 75.2783 80.6667 73.3333 80.6667H66"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" />
                                     <path d="M36.6667 22H51.3333" stroke="currentColor" stroke-linecap="round"
                                         stroke-linejoin="round" stroke-width="1.5" />
                                     <path d="M36.6667 36.6667H51.3333" stroke="currentColor" stroke-linecap="round"
@@ -85,7 +93,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <h2 class="font-medium text-base text-center tracking-[0.08px] leading-6">
+                        <h2 class="font-medium text-sm text-center tracking-[0.08px] leading-6">
                             {{ 'ACCOUNT_TYPE.COMPANY' | translate }}
                         </h2>
                     </div>
@@ -95,9 +103,9 @@
             <!-- Action Section -->
             <div class="flex flex-col gap-2 items-start w-full">
                 <!-- Let's Start Button -->
-                <button [routerLink]="['/auth','signup' , selectedAccountType]" class="w-full disabled:bg-primary-700 disabled:cursor-not-allowed bg-primary-900 hover:bg-primary-950 transition-colors rounded-lg py-3.5 px-4 flex items-center justify-center gap-2.5"
-                [disabled]="!selectedAccountType"
-                >
+                <button [routerLink]="['/auth','signup' , selectedAccountType]"
+                    class="btn-primary flex items-center justify-center gap-2.5"
+                    [disabled]="!selectedAccountType">
                     <span class="font-semibold text-[15px] text-[#fff5ed] tracking-[0.075px] leading-normal">
                         {{ 'ACCOUNT_TYPE.LETS_START' | translate }}
                     </span>
@@ -108,11 +116,12 @@
                 </button>
 
                 <!-- Sign In Link -->
-                <div class="flex gap-2.5 items-center justify-center w-full py-4 text-sm tracking-[0.07px]">
+                <div class="flex gap-2.5 items-center justify-center w-full mt-2 text-xs 2xl:text-sm tracking-[0.07px]">
                     <span class="font-normal text-gray-500 leading-5">
                         {{ 'ACCOUNT_TYPE.HAVE_ACCOUNT' | translate }}
                     </span>
-                    <a routerLink="/auth/signin" class="font-medium text-blue-600 hover:text-blue-700 leading-5 transition-colors">
+                    <a routerLink="/auth/signin"
+                        class="text-blue-600 hover:text-blue-700 leading-5 transition-colors">
                         {{ 'ACCOUNT_TYPE.SIGN_IN' | translate }}
                     </a>
                 </div>

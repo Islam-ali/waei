@@ -34,7 +34,7 @@ interface SelectOption {
       <div class="select-container relative w-full" [class.is-open]="isOpen" [class.is-multiple]="field.multiple">
         <!-- Select Trigger -->
         <div 
-          class="select-trigger flex items-center justify-between w-full min-h-[2.5rem] px-3 py-2 bg-white border border-gray-300 rounded-md cursor-pointer transition-all duration-150 ease-in-out text-sm font-medium hover:border-gray-400 focus:outline-none focus:border-blue-500"
+          class="select-trigger flex items-center justify-between w-full min-h-[2.5rem] px-3 py-2 bg-white border border-gray-200 rounded-md cursor-pointer transition-all duration-150 ease-in-out text-sm font-medium hover:border-gray-400 focus:outline-none focus:border-blue-500"
           [class.border-red-500]="isFieldInvalid()"
           [class.border-green-500]="isFieldValid()"
           [class.bg-gray-100]="field.disabled"
@@ -79,13 +79,13 @@ interface SelectOption {
 
         <!-- Dropdown -->
         @if (isOpen) {
-          <div class="select-dropdown absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-64 overflow-hidden flex flex-col">
+          <div class="select-dropdown absolute top-full left-0 right-0 z-50 mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-64 overflow-hidden flex flex-col">
             <!-- Search Input -->
             @if (field.searchable) {
               <div class="search-container relative p-2 border-b border-gray-200">
                 <input
                   type="text"
-                  class="search-input w-full px-3 py-2 pr-8 text-sm bg-white border border-gray-300 rounded text-gray-900 font-medium outline-none focus:border-blue-500"
+                  class="search-input w-full px-3 py-2 pr-8 text-sm bg-white border border-gray-200 rounded text-gray-900 font-medium outline-none focus:border-blue-500"
                   placeholder="ابحث..."
                   [(ngModel)]="searchTerm"
                   (input)="onSearchChange()"
