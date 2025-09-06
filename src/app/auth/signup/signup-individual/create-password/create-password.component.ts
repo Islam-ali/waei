@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,11 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './create-password.component.scss'
 })
 export class CreatePasswordComponent implements OnInit {
+  fb = inject(FormBuilder);
+  translate = inject(TranslateService);
+  @Input() title = '';
+  @Input() subtitle = '';
+  @Input() isShowPreviousButton = true;
   @Output() nextStep = new EventEmitter<void>();
   @Output() previousStep = new EventEmitter<void>();
   
@@ -18,12 +23,9 @@ export class CreatePasswordComponent implements OnInit {
   showConfirmPassword = false;
 
   // Password validation pattern
-  private passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+  private passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;
 
-  constructor(
-    private fb: FormBuilder,
-    private translate: TranslateService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
     this.initializeForm();
@@ -33,7 +35,7 @@ export class CreatePasswordComponent implements OnInit {
     this.passwordForm = this.fb.group({
       password: ['', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
         Validators.pattern(this.passwordPattern)
       ]],
       confirmPassword: ['', [
@@ -121,14 +123,14 @@ export class CreatePasswordComponent implements OnInit {
     if (!password) return '';
     
     let score = 0;
-    if (password.length >= 8) score++;
+    if (password.length >= 6) score++;
     if (/[A-Z]/.test(password)) score++;
     if (/[a-z]/.test(password)) score++;
     if (/[0-9]/.test(password)) score++;
     if (/[!@#$%^&*]/.test(password)) score++;
     
-    if (score < 3) return 'weak';
-    if (score < 5) return 'medium';
+    if (score < 2) return 'weak';
+    if (score < 4) return 'medium';
     return 'strong';
   }
 
@@ -165,6 +167,6 @@ export class CreatePasswordComponent implements OnInit {
 
   hasMinLength(): boolean {
     const password = this.passwordForm.get('password')?.value || '';
-    return password.length >= 8;
+    return password.length >= 6;
   }
 }

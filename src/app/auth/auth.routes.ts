@@ -40,7 +40,7 @@ export const AUTHENTICATION_ROUTES: Routes = [
 
       },
       {
-        path: 'login',
+        path: 'signin',
         loadComponent: () => import('./login/login-individual.component').then(m => m.LoginIndividualComponent),
         title: 'login individual'
       },

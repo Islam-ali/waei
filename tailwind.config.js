@@ -323,6 +323,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['IBM Plex Sans Arabic', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       }
     }
   },

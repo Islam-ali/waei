@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Inject, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Inject, Input, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { ControlField } from '../../../../projects/dynamic-form/src';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
@@ -14,13 +14,20 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './verify-code.component.scss'
 })
 export class VerifyCodeComponent {
+  // required inputs title
+  @Input({required: true}) title = '';
+  @Input({required: true}) subtitle: string = '';
+  @Input() otpLength: number = 4;
+  @Input() countdown: number = 5 * 60;
+  @Input() maxAttempts: number = 3;
+  @Input() onResend: () => void = () => { };
+  @Input() onComplete: (otp: string) => void = () => { };
   @Output() nextStep = new EventEmitter<void>();
   @Output() previousStep = new EventEmitter<void>();
   @ViewChild(OtpFieldComponent) otpFieldComponent!: OtpFieldComponent;
-  
+
   isBrowser: boolean;
   otpControl: FormControl;
-  otpForm: FormGroup;
   isError: boolean = false;
   isVerified: boolean = false;
   isLoading: boolean = false;
@@ -28,16 +35,15 @@ export class VerifyCodeComponent {
   errorMessage: string = '';
   successMessage: string = '';
   attempts: number = 0;
-  maxAttempts: number = 3;
   // Dynamic OTP Field Configuration
   otpField: ControlField = {
     name: 'otp',
     type: 'control',
     controlType: 'otp',
-    label: 'رمز التحقق',
-    description: '',
-    otpLength: 4,
-    countdown: 5 * 60, // 5 minutes
+    label: this.title,
+    description: this.subtitle,
+    otpLength: this.otpLength,
+    countdown: this.countdown, // 5 minutes
     canResend: false,
     autoSubmit: true,
     onResend: () => {
@@ -47,8 +53,8 @@ export class VerifyCodeComponent {
       this.verifyOtp(otp);
     },
     validations: [
-      { type: 'required', message: 'OTP is required' },
-      { type: 'minLength', value: 4, message: 'OTP must be 4 digits' }
+      { type: 'required', message: '' },
+      { type: 'minLength', value: this.otpLength, message: '' }
     ]
   };
   constructor(
@@ -59,9 +65,6 @@ export class VerifyCodeComponent {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.otpControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
-    this.otpForm = this.fb.group({
-      otp: this.otpControl
-    });
     this.otpControl.valueChanges.subscribe(value => {
       this.clearMessages();
       if (value && value.length === 4) {
@@ -151,31 +154,30 @@ export class VerifyCodeComponent {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         if (otpValue === '1234') {
+          // TODO: Navigate to next page or show success message
           this.isError = false;
           this.isVerified = true;
           this.successMessage = this.translate.instant('VERIFY_CODE.ACCOUNT_VERIFIED');
-
-          // TODO: Navigate to next page or show success message
+          this.otpFieldComponent.isSuccess = true;
+          this.otpFieldComponent.isError = false;
           setTimeout(() => {
             // Navigate to dashboard or next step
             this.onNextStep();
-          }, 100);
+          }, 1000);
 
         } else {
-          this.isError = true;
-          this.isVerified = false;
-          this.errorMessage = this.translate.instant('VERIFY_CODE.OTP_INCORRECT', { remaining: this.maxAttempts - this.attempts });
-
           // Set error on OTP field
           if (this.otpFieldComponent) {
             // Use setTimeout to ensure the error is set after the current change detection cycle
-            setTimeout(() => {
-              this.otpFieldComponent.setError(this.translate.instant('VERIFY_CODE.OTP_INCORRECT', { remaining: this.maxAttempts - this.attempts }));
-            }, 0);
+            this.isError = true;
+            this.isVerified = false;
+            this.errorMessage = this.translate.instant('VERIFY_CODE.OTP_INCORRECT', { remaining: this.maxAttempts - this.attempts });
+            this.otpFieldComponent.isSuccess = false;
+            this.otpFieldComponent.isError = true;
+            this.otpFieldComponent.setError(this.translate.instant('VERIFY_CODE.OTP_INCORRECT', { remaining: this.maxAttempts - this.attempts }));
           }
 
           // Clear the form for retry
-          this.otpControl.setValue('');
 
           if (this.attempts >= this.maxAttempts) {
             this.errorMessage = this.translate.instant('VERIFY_CODE.MAX_ATTEMPTS_REACHED');
@@ -230,17 +232,17 @@ export class VerifyCodeComponent {
 
   /** Handle form submission */
   public onSubmit(): void {
-    if (this.otpForm.valid) {
+    if (this.otpControl.valid) {
       this.verifyOtp();
     } else {
       this.isError = true;
-      this.errorMessage = this.translate.instant('VERIFY_CODE.ENTER_CORRECT_OTP');
-      // Set error on OTP field
-      if (this.otpFieldComponent) {
-        setTimeout(() => {
-          this.otpFieldComponent.setError(this.translate.instant('VERIFY_CODE.ENTER_CORRECT_OTP'));
-        }, 0);
-      }
+      // this.errorMessage = this.translate.instant('VERIFY_CODE.ENTER_CORRECT_OTP');
+      // // Set error on OTP field
+      // if (this.otpFieldComponent) {
+      //   setTimeout(() => {
+      //     this.otpFieldComponent.setError(this.translate.instant('VERIFY_CODE.ENTER_CORRECT_OTP'));
+      //   }, 0);
+      // }
     }
   }
 

@@ -122,7 +122,7 @@
     @apply w-full bg-primary-600 text-white-100% font-semibold py-3 px-4 rounded-lg hover:bg-primary-700 focus:outline-none focus:border-primary-700 disabled:bg-primary-400 disabled:cursor-not-allowed;
   }
     .card-testimonial {
-    @apply shrink-0 bg-white-70% w-[80%] max-w-md min-h-[300px] mx-2  rounded-2xl text-xl font-semibold transition-all duration-500;
+    @apply shrink-0 bg-white-70% w-[80%] max-w-md min-h-[300px] mx-2  rounded-md text-xl font-semibold transition-all duration-500;
   }
   .card-testimonial.active {
     @apply bg-white-100%;

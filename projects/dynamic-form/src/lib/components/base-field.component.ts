@@ -19,6 +19,8 @@ export abstract class BaseFieldComponent implements ControlValueAccessor {
   @Input() showValidationMessages = true;
   @Input() direction: 'ltr' | 'rtl' = 'ltr';
   @Input() control!: FormControl;
+  @Input() isSuccess: boolean = false;
+  @Input() isError: boolean = false;
   value: any;
   touched = false;
   dirty = false;
@@ -83,7 +85,8 @@ export abstract class BaseFieldComponent implements ControlValueAccessor {
   }
 
   isFieldValid(): boolean {
-    if (this.control && this.control.errors && this.control.dirty) {
+    console.log(this.control , this.control.dirty , this.control.invalid);
+    if (this.control && this.control.dirty) {
       return !this.control.invalid;
     }
     return false;

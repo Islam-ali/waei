@@ -172,7 +172,7 @@ interface SelectOption {
       </div>
 
       @if (showValidationMessages && hasError('required')) {
-        <div class="field-error mt-1 text-sm text-red-600">{{ getErrorMessage('required') }}</div>
+        <div class="field-error mt-1 text-xs text-red-600">{{ getErrorMessage('required') }}</div>
       }
     </div>
   `,

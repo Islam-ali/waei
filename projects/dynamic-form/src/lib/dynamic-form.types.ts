@@ -79,6 +79,8 @@ export interface ControlField extends BaseField {
   canResend?: boolean;
   onResend?: () => void;
   onComplete?: (otp: string) => void;
+  isSuccess?: boolean;
+  isError?: boolean;
 }
 
 // ====================

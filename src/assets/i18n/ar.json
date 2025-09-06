@@ -28,25 +28,6 @@
       "SPECIAL_CHAR": "رمز خاص واحد (!@#$%^&*)"
     }
   },
-  "FIELDS": {
-    "FIRST_NAME": "الاسم الأول",
-    "LAST_NAME": "اسم العائلة",
-    "PHONE_NUMBER": "رقم الهاتف",
-    "TERMS_CONDITIONS": "الشروط والأحكام",
-    "USERNAME": "اسم المستخدم",
-    "EMAIL": "البريد الإلكتروني",
-    "PASSWORD": "كلمة المرور",
-    "CONFIRM_PASSWORD": "تأكيد كلمة المرور"
-  },
-  "PLACEHOLDERS": {
-    "FIRST_NAME": "مثال: أحمد",
-    "LAST_NAME": "مثال: محمد",
-    "PHONE_NUMBER": "+966 (000) 000-0000",
-    "USERNAME": "مثال: أحمد",
-    "EMAIL": "مثال: Ahmed@gmail.com",
-    "PASSWORD": "أدخل كلمة المرور",
-    "CONFIRM_PASSWORD": "أدخل كلمة المرور مرة أخرى"
-  },
   "SOURCE": {
     "ALDREES_WEBSITE": "موقع الدريس",
     "NEWSPAPER": "جريدة",
@@ -55,20 +36,6 @@
     "INTERNET": "إنترنت",
     "RADIO": "راديو",
     "OTHER": "أخرى"
-  },
-  "VALIDATION": {
-    "REQUIRED": "{{field}} مطلوب",
-    "ACCEPT_TERMS": "يجب أن توافق على الشروط والأحكام",
-    "MIN_LENGTH": "{{field}} يجب أن يكون على الأقل {{length}} أحرف",
-    "MAX_LENGTH": "{{field}} يجب ألا يتجاوز {{length}} حرف",
-    "PHONE_PATTERN": "رقم الهاتف يجب أن يكون 9 أرقام",
-    "NAME_PATTERN": "الاسم يمكن أن يحتوي على أحرف ومسافات فقط",
-    "INVALID_FORMAT": "تنسيق غير صحيح",
-    "EMAIL_INVALID": "يرجى إدخال عنوان بريد إلكتروني صحيح",
-    "USERNAME_PATTERN": "اسم المستخدم يمكن أن يحتوي على أحرف وأرقام وشرطة سفلية فقط",
-    "PASSWORD_MIN_LENGTH": "كلمة المرور يجب أن تكون على الأقل {{length}} أحرف",
-    "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل، وحرف صغير واحد، ورقم واحد، ورمز خاص واحد (!@#$%^&*)",
-    "PASSWORD_MISMATCH": "كلمات المرور غير متطابقة"
   },
   "VERIFY_CODE": {
     "TITLE": "رمز التحقق",
@@ -83,6 +50,11 @@
     "VERIFICATION_ERROR": "حدث خطأ أثناء التحقق من رمز التحقق، يرجى المحاولة مرة أخرى",
     "ENTER_4_DIGIT_OTP": "يرجى إدخال رمز التحقق المكون من 4 أرقام",
     "ENTER_CORRECT_OTP": "يرجى إدخال رمز التحقق الصحيح"
+  },
+  "VERIFY_PASSWORD": {
+    "TITLE": "أدخل كلمة المرور لمرة واحدة",
+    "SUBTITLE": "لقد أرسلنا رمز استرداد كلمة المرور المكون من 4 أرقام إلى رقم هاتفك المنتهي بـ 0115. أدخل الرمز للمتابعة",
+    "CONFIRM_CODE": "تأكيد الرمز"
   },
   "COMPANY_REGISTRATION": {
     "TITLE": "تسجيل الشركة",
@@ -102,7 +74,10 @@
     "PASSWORD": "كلمة المرور",
     "CONFIRM_PASSWORD": "تأكيد كلمة المرور",
     "COMPANY_TYPE": "نوع الشركة",
-    "COMPANY_NAME": "اسم الشركة"
+    "COMPANY_NAME": "اسم الشركة",
+    "USERNAME_OR_EMAIL": "اسم المستخدم أو البريد الإلكتروني",
+    "LOGIN": "تسجيل الدخول",
+    "USERNAME_OR_EMAIL_PATTERN": "يجب أن يكون اسم المستخدم أو البريد الإلكتروني صحيحاً"
   },
   "PLACEHOLDERS": {
     "FIRST_NAME": "مثال: أحمد",
@@ -113,7 +88,8 @@
     "PASSWORD": "أدخل كلمة المرور",
     "CONFIRM_PASSWORD": "أدخل كلمة المرور مرة أخرى",
     "COMPANY_NAME": "مثال: شركة أحمد",
-    "COMPANY_EMAIL": "مثال: contact@company.com"
+    "COMPANY_EMAIL": "مثال: contact@company.com",
+    "USERNAME_OR_EMAIL": "ادخل اسم المستخدم أو البريد الإلكتروني"
   },
   "VALIDATION": {
     "REQUIRED": "{{field}} مطلوب",
@@ -128,7 +104,8 @@
     "PASSWORD_MIN_LENGTH": "كلمة المرور يجب أن تكون على الأقل {{length}} أحرف",
     "PASSWORD_PATTERN": "كلمة المرور يجب أن تحتوي على حرف كبير واحد على الأقل، وحرف صغير واحد، ورقم واحد، ورمز خاص واحد (!@#$%^&*)",
     "PASSWORD_MISMATCH": "كلمات المرور غير متطابقة",
-    "COMPANY_NAME_PATTERN": "اسم الشركة يحتوي على أحرف غير صحيحة"
+    "COMPANY_NAME_PATTERN": "اسم الشركة يحتوي على أحرف غير صحيحة",
+    "EMAIL": "{{field}} غير صحيح"
   },
   "ACCOUNT_TYPE": {
     "TITLE": "دعنا نبدأ",
@@ -143,6 +120,27 @@
     "CONTINUE": "متابعة",
     "PREVIOUS": "السابق",
     "CREATE_ACCOUNT": "إنشاء حساب",
-    "VERIFY": "تحقق"
+    "VERIFY": "تحقق",
+    "LOGIN": "تسجيل الدخول"
+  },
+  "LOGIN": {
+    "WELCOME_BACK": "مرحباً بعودتك",
+    "SIGN_IN_CONTINUE": "سجل دخولك للمتابعة إلى حساب واي الخاص بك.",
+    "PHONE_NUMBER": "رقم الهاتف",
+    "USERNAME_EMAIL": "اسم المستخدم / البريد الإلكتروني",
+    "DIDNT_HAVE_ACCOUNT": "ليس لديك حساب؟",
+    "CREATE_NEW_ACCOUNT": "إنشاء حساب جديد",
+    "FORGOT_PASSWORD": "هل نسيت كلمة المرور؟"
+  },
+  "FORGOT_PASSWORD": {
+    "TITLE": "نسيت كلمة المرور",
+    "SUBTITLE": "لا تقلق! أدخل رقم هاتفك المسجل أو بريدك الإلكتروني، وسنساعدك في إعادة تعيينها",
+    "SEND_CODE": "إرسال الرمز",
+    "REMEMBER_PASSWORD": "تتذكر كلمة المرور",
+    "SIGN_IN": "تسجيل الدخول",
+    "PASSWORD_RECOVERY_CODE": "رمز استرداد كلمة المرور",
+    "PASSWORD_RECOVERY_SUBTITLE": "لقد أرسلنا رمز استرداد كلمة المرور المكون من 4 أرقام إلى رقم هاتفك المنتهي بـ 0115. أدخل الرمز للمتابعة",
+    "CREATE_NEW_PASSWORD": "إنشاء كلمة مرور جديدة",
+    "NEW_PASSWORD_DIFFERENT": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية"
   }
 }

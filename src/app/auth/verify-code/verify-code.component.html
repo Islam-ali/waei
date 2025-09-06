@@ -12,10 +12,10 @@
 </div>
 <div class="flex flex-col mb-4">
     <div class="text-2xl font-semibold text-gray-800 mb-2">
-        <p>{{ 'VERIFY_CODE.TITLE' | translate }}</p>
+        <p>{{ title | translate }}</p>
     </div>
     <div class="text-gray-500 mb-6 text-md">
-        <p>{{ 'VERIFY_CODE.SUBTITLE' | translate }}</p>
+        <p>{{ subtitle | translate }}</p>
     </div>
 </div>
 
@@ -65,14 +65,14 @@
             } -->
 
 <!-- Dynamic OTP Field -->
-<form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()">
     <lib-otp-field [field]="otpField" [control]="otpControl" [showLabels]="true"
         [showValidationMessages]="true"></lib-otp-field>
-    <div class="flex justify-between items-center py-4">
-        <span>
-            <app-countdown class="text-green-500 text-xl" [countdown]="5 * 60"></app-countdown>
+    <div class="flex flex-col items-center py-4">
+        <span class="text-green-600 text-xl mb-2">
+            <app-countdown [countdown]="5 * 60"></app-countdown>
         </span>
-        <span class="text-gray-500 m-0 text-sm">{{ 'VERIFY_CODE.DIDNT_RECEIVE' | translate }} <a class="text-indigo-300"
+        <span class="text-gray-500 m-0 text-xs">{{ 'VERIFY_CODE.DIDNT_RECEIVE' | translate }} <a class="text-indigo-400"
                 (click)="resendOtp()">{{ 'VERIFY_CODE.RESEND_CODE' | translate }}</a></span>
     </div>
     <!-- Manual Verify Button (fallback) -->

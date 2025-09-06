@@ -5,7 +5,7 @@
     <app-company-registration class="w-full" (nextStep)="onNextStep()"></app-company-registration>
     }
     @case (Step.VerifyCode) {
-    <app-verify-code class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
+    <app-verify-code class="w-full" [title]="titleVerifyCode" [subtitle]="subtitleVerifyCode" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
     }
     @case (Step.CreatePassword) {
     <app-create-password-company class="w-full" (nextStep)="onNextStep()"

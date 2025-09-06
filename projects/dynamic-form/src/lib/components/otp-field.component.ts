@@ -13,16 +13,10 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseFieldComponent } from './base-field.component';
-import { NgClass, AsyncPipe, CommonModule } from '@angular/common';
-import { Subject, interval, Observable, BehaviorSubject, of } from 'rxjs';
+import { NgClass, CommonModule } from '@angular/common';
+import { Subject, BehaviorSubject } from 'rxjs';
 import {
-  switchMap,
-  startWith,
-  map,
-  takeWhile,
   takeUntil,
-  shareReplay,
-  tap,
 } from 'rxjs/operators';
 
 @Component({
@@ -45,7 +39,7 @@ import {
       } -->
 
       <!-- OTP Input Fields -->
-      <div class="otp-container text-center mt-4" [ngClass]="field.class">
+      <div class="otp-container text-center my-4" [ngClass]="field.class">
         <div class="otp-inputs">
           @for (digit of otpArray; track $index) {
             @if ($index == 2) {
@@ -65,8 +59,8 @@ import {
               (keydown)="onOtpKeydown($event, $index)"
               (paste)="onPaste($event)"
               class="otp-input"
-              [class.is-invalid]="isFieldInvalid() || hasCustomErrorMessage()"
-              [class.is-valid]="isFieldValid()"
+              [class.is-invalid]="hasCustomErrorMessage() || isError"
+              [class.is-valid]="(isFieldValid() && !hasCustomErrorMessage() && isSuccess)"
               [class.is-disabled]="disabled "
             />
           }
@@ -86,7 +80,7 @@ import {
       } -->
 
       <!-- Validation Messages -->
-      @if (showValidationMessages && hasError('required')) {
+      <!-- @if (showValidationMessages && hasError('required')) {
         <div class="field-error">{{ getErrorMessage('required') }}</div>
       }
       @if (showValidationMessages && hasError('pattern')) {
@@ -94,10 +88,10 @@ import {
       }
       @if (showValidationMessages && hasError('minlength')) {
         <div class="field-error">{{ getErrorMessage('minLength') }}</div>
-      }
-      @if (showValidationMessages && hasCustomErrorMessage()) {
+      } -->
+      <!-- @if (showValidationMessages && hasCustomErrorMessage()) {
         <div class="field-error">{{ getErrorMessage('custom') }}</div>
-      }
+      } -->
     </div>
   `,
   styles: [
@@ -196,7 +190,6 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
   private reset$ = new Subject<number>();
   private cdr = inject(ChangeDetectorRef);
   private countdownTimer?: any;
-  
   // Error handling properties
   private customError: string = '';
   private hasCustomError: boolean = false;
@@ -353,7 +346,9 @@ export class OtpFieldComponent extends BaseFieldComponent implements OnInit, OnD
     this.value = otpValue;
     this.onChange(otpValue);
     this.onTouched();
-    this.dirty = true;
+    this.control.setValue(otpValue);
+    this.control.updateValueAndValidity();
+    this.control.markAsDirty();
   }
 
   private onComplete(): void {

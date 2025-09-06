@@ -5,7 +5,7 @@
     <app-your-details class="w-full" (nextStep)="onNextStep()"></app-your-details>
     }
     @case (Step.VerifyCode) {
-    <app-verify-code class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
+    <app-verify-code class="w-full" [title]="titleVerifyCode" [subtitle]="subtitleVerifyCode" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-verify-code>
     }
     @case (Step.UserNameAndEmail) {
     <app-username-and-email class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-username-and-email>
@@ -14,7 +14,7 @@
     <app-select-source class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-select-source>
     }
     @case (Step.CreatePassword) {
-    <app-create-password class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
+    <app-create-password [title]="titlePassword" [subtitle]="subtitlePassword" class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
     }
     }
   </div>
