@@ -47,7 +47,7 @@ export class LanguageSwitcherComponent implements OnDestroy {
     this.translationService.currentLanguage$
       .pipe(takeUntil(this.destroy$))
       .subscribe(lang => {
-        this.currentLanguage = lang;
+        this.currentLanguage = lang as Language;
       });
   }
 

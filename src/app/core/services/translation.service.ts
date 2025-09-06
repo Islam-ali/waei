@@ -10,7 +10,7 @@ export type Language = 'ar' | 'en';
   providedIn: 'root'
 })
 export class TranslationService {
-  private currentLanguageSubject = new BehaviorSubject<Language>('ar');
+  private currentLanguageSubject = new BehaviorSubject<Language | null>(null);
   public currentLanguage$ = this.currentLanguageSubject.asObservable();
 
   constructor(
@@ -37,17 +37,21 @@ export class TranslationService {
   }
 
   public setLanguage(language: Language): void {
-    this.currentLanguageSubject.next(language);
+    if (this.currentLanguageSubject.value !== language) {
+      this.currentLanguageSubject.next(language);
+    }
     this.storageService.setLocalItem('language', language);
+    this.translate.setDefaultLang(language); // أضف دي
     this.translate.use(language);
-    // تعيين اتجاه النص - فقط في المتصفح
+  
     if (isPlatformBrowser(this.platformId) && typeof document !== 'undefined') {
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = language;
     }
   }
+  
 
-  public getCurrentLanguage(): Language {
+  public getCurrentLanguage(): Language | null {
     return this.currentLanguageSubject.value;
   }
 
