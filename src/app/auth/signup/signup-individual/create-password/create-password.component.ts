@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Output, OnInit, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
-import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-password',
-  imports: [CommonModule, ReactiveFormsModule, TitleCasePipe, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './create-password.component.html',
   styleUrl: './create-password.component.scss'
 })
