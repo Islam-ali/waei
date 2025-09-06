@@ -18,7 +18,10 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/WAIE",
-            "index": "src/index.html",
+            "index": {
+              "input": "src/index.html",
+              "output": "index.html"
+            },
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -26,7 +29,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-                "src/assets"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
