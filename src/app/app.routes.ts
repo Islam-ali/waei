@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { DesignSystemComponent } from './shared/components/ui/design-system/design-system.component';
-import { StorageDemoComponent } from './shared/components/storage-demo/storage-demo.component';
-import { DynamicFormExampleComponent } from './shared/components/dynamic-form-example/dynamic-form-example.component';
 
 export const routes: Routes = [
   {
@@ -11,15 +8,15 @@ export const routes: Routes = [
   },
   {
     path: 'design-system',
-    component: DesignSystemComponent
+    loadComponent: () => import('./shared/components/ui/design-system/design-system.component').then(m => m.DesignSystemComponent)
   },
   {
     path: 'storage-demo',
-    component: StorageDemoComponent
+    loadComponent: () => import('./shared/components/storage-demo/storage-demo.component').then(m => m.StorageDemoComponent)
   },
   {
     path: 'dynamic-form-example',
-    component: DynamicFormExampleComponent
+    loadComponent: () => import('./shared/components/dynamic-form-example/dynamic-form-example.component').then(m => m.DynamicFormExampleComponent)
   },
   {
     path: 'auth',
