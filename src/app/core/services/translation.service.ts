@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { StorageService } from './storage.service';
@@ -15,6 +15,7 @@ export class TranslationService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2,
     private storageService: StorageService,
     private translate: TranslateService
   ) {
@@ -43,7 +44,7 @@ export class TranslationService {
     this.storageService.setLocalItem('language', language);
     this.translate.setDefaultLang(language); // أضف دي
     this.translate.use(language);
-  
+    
     if (isPlatformBrowser(this.platformId) && typeof document !== 'undefined') {
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = language;

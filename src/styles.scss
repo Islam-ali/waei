@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 /* RTL (عربي) */
 [dir="rtl"] {
   font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
