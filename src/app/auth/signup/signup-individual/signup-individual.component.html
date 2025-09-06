@@ -14,7 +14,7 @@
     <app-select-source class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-select-source>
     }
     @case (Step.CreatePassword) {
-    <app-create-password [title]="titlePassword" [subtitle]="subtitlePassword" class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
+    <app-create-password [title]="titlePassword" [subtitle]="subtitlePassword" [buttonText]="'BUTTONS.CREATE_PASSWORD'" class="w-full" (nextStep)="onNextStep()" (previousStep)="onPreviousStep()"></app-create-password>
     }
     }
   </div>

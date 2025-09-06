@@ -137,7 +137,8 @@
     "VERIFY": "تحقق",
     "LOGIN": "تسجيل الدخول",
     "RESET_PASSWORD": "إعادة تعيين كلمة المرور",
-    "CONFIRM_CODE": "تأكيد الرمز"
+    "CONFIRM_CODE": "تأكيد الرمز",
+    "CREATE_PASSWORD": "إنشاء كلمة المرور"
   },
   "LOGIN": {
     "WELCOME_BACK": "مرحباً بعودتك",

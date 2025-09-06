@@ -12,8 +12,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class CreatePasswordComponent implements OnInit {
   fb = inject(FormBuilder);
   translate = inject(TranslateService);
-  @Input() title = '';
-  @Input() subtitle = '';
+  @Input({required: true}) title = '';
+  @Input({required: true}) subtitle = '';
+  @Input({required: true}) buttonText = '';
   @Input() isShowPreviousButton = true;
   @Output() nextStep = new EventEmitter<void>();
   @Output() previousStep = new EventEmitter<void>();

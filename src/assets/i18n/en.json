@@ -137,7 +137,8 @@
     "VERIFY": "Verify",
     "LOGIN": "Login",
     "RESET_PASSWORD": "Reset Password",
-    "CONFIRM_CODE": "Confirm Code"
+    "CONFIRM_CODE": "Confirm Code",
+    "CREATE_PASSWORD": "Create Password"
   },
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",
