@@ -1,4 +1,4 @@
-# WAAI - Angular Generic Architecture & Dynamic Form Library
+# WAIE - Angular Generic Architecture & Dynamic Form Library
 
 مشروع شامل يحتوي على:
 1. **Angular Generic Architecture** - بنية عامة قابلة لإعادة الاستخدام
@@ -49,7 +49,7 @@ npm run test:lib
 ## 🏗️ هيكل المشروع
 
 ```
-waai/
+WAIE/
 ├── src/
 │   ├── app/
 │   │   ├── core/

@@ -96,7 +96,7 @@
   "PLACEHOLDERS": {
     "FIRST_NAME": "e.g Ahmed",
     "LAST_NAME": "e.g Mohamed",
-    "PHONE_NUMBER": "+966 (000) 000-0000",
+    "PHONE_NUMBER": "5xxxxxxxx",
     "USERNAME": "e.g Ahmed",
     "EMAIL": "e.g Ahmed@gmail.com",
     "PASSWORD": "Enter password",
@@ -136,7 +136,8 @@
     "CREATE_ACCOUNT": "Create Account",
     "VERIFY": "Verify",
     "LOGIN": "Login",
-    "RESET_PASSWORD": "Reset Password"
+    "RESET_PASSWORD": "Reset Password",
+    "CONFIRM_CODE": "Confirm Code"
   },
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",

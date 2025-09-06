@@ -1,4 +1,4 @@
-# نظام التصميم الشامل - WAAI Design System
+# نظام التصميم الشامل - WAIE Design System
 
 ## نظرة عامة
 

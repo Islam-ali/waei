@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "waai": {
+    "WAIE": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/waai",
+            "outputPath": "dist/WAIE",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -110,13 +110,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "waai:build:production"
+              "buildTarget": "WAIE:build:production"
             },
             "development": {
-              "buildTarget": "waai:build:development"
+              "buildTarget": "WAIE:build:development"
             },
             "staging": {
-              "buildTarget": "waai:build:staging"
+              "buildTarget": "WAIE:build:staging"
             }
           },
           "defaultConfiguration": "development"

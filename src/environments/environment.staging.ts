@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://staging-api.waai.com/api',
-  baseUrl: 'https://staging.waai.com',
-  appName: 'WAAI Staging',
+  apiBaseUrl: 'https://staging-api.WAIE.com/api',
+  baseUrl: 'https://staging.WAIE.com',
+  appName: 'WAIE Staging',
   version: '1.0.0',
   debug: true,
   logLevel: 'warn',

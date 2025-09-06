@@ -17,6 +17,7 @@ export class VerifyCodeComponent {
   // required inputs title
   @Input({required: true}) title = '';
   @Input({required: true}) subtitle: string = '';
+  @Input({required: true}) buttonText: string = '';
   @Input() otpLength: number = 4;
   @Input() countdown: number = 5 * 60;
   @Input() maxAttempts: number = 3;

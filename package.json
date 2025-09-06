@@ -1,5 +1,5 @@
 {
-  "name": "waai",
+  "name": "WAIE",
   "version": "1.0.0",
   "description": "Angular Generic Architecture & Dynamic Form Library with RTL/LTR support",
   "keywords": [
@@ -26,7 +26,7 @@
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:waai": "node dist/waai/server/server.mjs",
+    "serve:ssr:WAIE": "node dist/WAIE/server/server.mjs",
     "build:lib": "ng build dynamic-form",
     "build:lib:dev": "ng build dynamic-form --configuration development",
     "build:lib:prod": "ng build dynamic-form --configuration production",

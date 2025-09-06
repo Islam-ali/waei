@@ -52,19 +52,3 @@ export const AUTHENTICATION_ROUTES: Routes = [
     ]
   }
 ];
-
-// Alternative: Add to main app routes
-export const APP_ROUTES_WITH_AUTH: Routes = [
-  {
-    path: '',
-    redirectTo: '/auth/demo',
-    pathMatch: 'full'
-  },
-  // Include authentication routes
-  ...AUTHENTICATION_ROUTES,
-  // Other app routes...
-  {
-    path: '**',
-    redirectTo: '/auth/demo'
-  }
-];

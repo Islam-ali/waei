@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:3000/api',
   baseUrl: 'http://localhost:3000',
-  appName: 'WAAI Dev',
+  appName: 'WAIE Dev',
   version: '1.0.0',
   debug: true,
   logLevel: 'debug',
