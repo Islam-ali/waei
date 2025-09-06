@@ -20,12 +20,26 @@
     "TITLE": "Protect Your Account",
     "SUBTITLE": "Set a strong password and confirm it. Agree to the terms to finish your registration.",
     "STRENGTH_LABEL": "Password strength",
+    "LEVEL": "Level",
+    "STRENGTH_LEVELS": {
+      "WEAK": "weak",
+      "MEDIUM": "medium",
+      "STRONG": "strong"
+    },
+    "REQUIREMENTS_TITLE": "Your password must contain:",
     "REQUIREMENTS": {
       "MIN_LENGTH": "At least 8 characters",
       "UPPERCASE": "One uppercase letter",
       "LOWERCASE": "One lowercase letter",
       "NUMBER": "One number",
       "SPECIAL_CHAR": "One special character (!@#$%^&*)"
+    },
+    "REQUIREMENTS_TEXT": {
+      "MIN_LENGTH": "Minimum number of characters is 6.",
+      "LOWERCASE": "Should contain lowercase.",
+      "UPPERCASE": "Should contain uppercase.",
+      "NUMBER": "Should contain numbers.",
+      "SPECIAL_CHAR": "Should contain special characters."
     }
   },
   "SOURCE": {
@@ -121,7 +135,8 @@
     "PREVIOUS": "Previous",
     "CREATE_ACCOUNT": "Create Account",
     "VERIFY": "Verify",
-    "LOGIN": "Login"
+    "LOGIN": "Login",
+    "RESET_PASSWORD": "Reset Password"
   },
   "LOGIN": {
     "WELCOME_BACK": "Welcome Back",

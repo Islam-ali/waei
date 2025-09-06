@@ -20,12 +20,26 @@
     "TITLE": "حماية حسابك",
     "SUBTITLE": "قم بتعيين كلمة مرور قوية وتأكيدها. وافق على الشروط لإنهاء تسجيلك.",
     "STRENGTH_LABEL": "قوة كلمة المرور",
+    "LEVEL": "المستوى",
+    "STRENGTH_LEVELS": {
+      "WEAK": "ضعيف",
+      "MEDIUM": "متوسط",
+      "STRONG": "قوي"
+    },
+    "REQUIREMENTS_TITLE": "يجب أن تحتوي كلمة المرور على:",
     "REQUIREMENTS": {
       "MIN_LENGTH": "8 أحرف على الأقل",
       "UPPERCASE": "حرف كبير واحد",
       "LOWERCASE": "حرف صغير واحد",
       "NUMBER": "رقم واحد",
       "SPECIAL_CHAR": "رمز خاص واحد (!@#$%^&*)"
+    },
+    "REQUIREMENTS_TEXT": {
+      "MIN_LENGTH": "الحد الأدنى لعدد الأحرف هو 6.",
+      "LOWERCASE": "يجب أن تحتوي على أحرف صغيرة.",
+      "UPPERCASE": "يجب أن تحتوي على أحرف كبيرة.",
+      "NUMBER": "يجب أن تحتوي على أرقام.",
+      "SPECIAL_CHAR": "يجب أن تحتوي على رموز خاصة."
     }
   },
   "SOURCE": {
@@ -121,7 +135,8 @@
     "PREVIOUS": "السابق",
     "CREATE_ACCOUNT": "إنشاء حساب",
     "VERIFY": "تحقق",
-    "LOGIN": "تسجيل الدخول"
+    "LOGIN": "تسجيل الدخول",
+    "RESET_PASSWORD": "إعادة تعيين كلمة المرور"
   },
   "LOGIN": {
     "WELCOME_BACK": "مرحباً بعودتك",

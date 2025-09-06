@@ -144,6 +144,14 @@ export class CreatePasswordComponent implements OnInit {
     }
   }
 
+  getPasswordStrengthTranslation(): string {
+    const strength = this.getPasswordStrength();
+    if (!strength) return '';
+    
+    const strengthKey = strength.toUpperCase();
+    return this.translate.instant(`CREATE_PASSWORD.STRENGTH_LEVELS.${strengthKey}`);
+  }
+
   // Helper methods for template validation
   hasUppercase(): boolean {
     const password = this.passwordForm.get('password')?.value || '';
